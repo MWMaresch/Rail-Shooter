@@ -420,3 +420,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.2
   crosshair: {fileID: 113105490}
+  cam: {fileID: 534669904}
