@@ -17,8 +17,9 @@ public class Player : MonoBehaviour {
     void Start ()
     {
         //this will eventually be moved to the main menu or something else that starts much earlier
-        Application.targetFrameRate = 60;
-        Debug.Log("target fps is: " + Application.targetFrameRate);
+        //Application.targetFrameRate = 60;
+        //Debug.Log("target fps is: " + Application.targetFrameRate);
+        Screen.SetResolution(480, 270, false, 60);
     }
     // Update is called once per frame
     void Update()
