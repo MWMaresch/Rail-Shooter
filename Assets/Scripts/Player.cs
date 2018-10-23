@@ -17,12 +17,14 @@ public class Player : MonoBehaviour {
     void Start ()
     {
         //this will eventually be moved to the main menu or something else that starts much earlier
-        //Application.targetFrameRate = 60;
+        Application.targetFrameRate = 180;
         //Debug.Log("target fps is: " + Application.targetFrameRate);
-        Screen.SetResolution(480, 270, false, 60);
+        Screen.SetResolution(1440, 810, false, 180);
+        //480, 960, 1440
+        //270, 540, 810
     }
-    // Update is called once per frame
-    void Update()
+    //Update is called once per frame
+    private void Update()
     {
         //for now, because menus haven't been made yet, to switch to mouse controls, we press a button to toggle it
         if (Input.GetButtonUp("ToggleMouse")) //right now it's the 'T' key
@@ -32,6 +34,11 @@ public class Player : MonoBehaviour {
             else
                 mouseEnabled = true;
         }
+
+    }
+    // FixedUpdate is called once every 16ms
+    void FixedUpdate()
+    {
 
         //move the crosshair
         if (mouseEnabled)
