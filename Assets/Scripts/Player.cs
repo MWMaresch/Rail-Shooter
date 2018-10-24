@@ -9,6 +9,7 @@ public class Player : MonoBehaviour {
     public Transform crosshair;
     public Camera cam;
     public GameObject laser;
+    public GameObject smallExplosion;
 
     private float curSpeedH;
     private Vector3 prevPosition;
@@ -29,6 +30,14 @@ public class Player : MonoBehaviour {
     //Update is called once per frame
     private void Update()
     {
+        if (mouseEnabled)
+        {
+            Vector3 mousePos = Input.mousePosition;
+            //this value must be the distance between the camera and the crosshair
+            mousePos.z = 5f;
+            mousePos = cam.ScreenToWorldPoint(mousePos);
+            crosshair.transform.position = new Vector3(mousePos.x, mousePos.y, mousePos.z);
+        }
         //for now, because menus haven't been made yet, to switch to mouse controls, we press a button to toggle it
         if (Input.GetButtonDown("ToggleMouse")) 
         {
@@ -57,15 +66,8 @@ public class Player : MonoBehaviour {
         else if (!GetComponent<Renderer>().enabled)
             GetComponent<Renderer>().enabled = true;
         //move the crosshair
-        if (mouseEnabled)
-        {
-            Vector3 mousePos = Input.mousePosition;
-            //this value must be the distance between the camera and the crosshair
-            mousePos.z = 5f;
-            mousePos = cam.ScreenToWorldPoint(mousePos);
-            crosshair.transform.position = new Vector3(mousePos.x, mousePos.y, mousePos.z);
-        }
-        else
+
+        if(!mouseEnabled)
             crosshair.transform.position += new Vector3(Input.GetAxis("Horizontal") * speed, Input.GetAxis("Vertical") * speed);
 
         if (shooting)
@@ -94,18 +96,29 @@ public class Player : MonoBehaviour {
         transform.rotation = new Quaternion(transform.rotation.x, transform.rotation.y, -curSpeedH, transform.rotation.w);
     }
 
+    public void TakeDamage(float knockbackX, float knockbackY)
+    {
+        Instantiate(smallExplosion, transform.position, transform.rotation);
+        transform.position += new Vector3(knockbackX, knockbackY, 0);
+        //temporary indicator that we're hit
+        GetComponent<Renderer>().enabled = false;
+        damageTimer = 1f;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (damageTimer <= 0f)
         {
-            if (other.tag == "Enemy")
+            if (other.tag == "EnemyWeapon")
             {
-                transform.position += new Vector3(other.transform.forward.x * 10f, other.transform.forward.y * 10f, 0f);
-                Destroy(other);
-                //temporary indicator that we're hit
-                GetComponent<Renderer>().enabled = false;
-                damageTimer = 1f;
-                //transform.rotation = new Quaternion(transform.rotation.x, transform.rotation.y, other.transform.forward.x * -2, transform.rotation.w);
+                TakeDamage(other.transform.forward.x * 10f, other.transform.forward.y * 10f);
+                Destroy(other.gameObject);
+            }
+            else if (other.gameObject.tag == "Enemy")
+            {
+                other.GetComponent<Enemy>().Explode();
+                TakeDamage(10f*(transform.position.x - other.transform.position.x),10f*(transform.position.y - other.transform.position.y));
+                Destroy(other.gameObject);
             }
         }
     }

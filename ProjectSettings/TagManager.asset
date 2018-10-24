@@ -7,6 +7,7 @@ TagManager:
   - Crosshair
   - PlayerWeapon
   - Enemy
+  - EnemyWeapon
   layers:
   - Default
   - TransparentFX
