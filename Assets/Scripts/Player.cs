@@ -75,6 +75,7 @@ public class Player : MonoBehaviour {
             //only shoot once per button press
             shooting = false;
             Instantiate(laser, transform.position, transform.rotation);
+            GetComponent<AudioSource>().Play();
         }
 
         //here we check to make sure the ship doesn't go out of bounds, and if it does, we stop it
@@ -118,7 +119,6 @@ public class Player : MonoBehaviour {
             {
                 other.GetComponent<Enemy>().Explode();
                 TakeDamage(10f*(transform.position.x - other.transform.position.x),10f*(transform.position.y - other.transform.position.y));
-                Destroy(other.gameObject);
             }
         }
     }

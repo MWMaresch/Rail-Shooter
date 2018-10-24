@@ -7,21 +7,25 @@ public class Enemy : MonoBehaviour {
 
     private GameObject player;
     private Vector3 direction;
-    private float curShootTimer;
+    private float shootTimer;
     private bool reachedPlayer;
+    private int health;
 
+    public int maxHealth;
     public float targetDistance;
     public float speed;
     public float minPlayerDistance;
-    public float shootTimer;
+    public float shootDelay;
     public GameObject projectile;
+    public GameObject smallExplosion;
     public GameObject deathExplosion;
 
 	// Use this for initialization
 	void Start () {
         player = GameObject.FindWithTag("Player");
-        curShootTimer = shootTimer;
+        shootTimer = shootDelay;
         reachedPlayer = false;
+        health = maxHealth;
     }
     
     // FixedUpdate is called once every 16ms
@@ -38,11 +42,12 @@ public class Enemy : MonoBehaviour {
                 transform.position += direction * speed;
 
                 //every set amount of time, shoot at the player
-                curShootTimer -= Time.fixedDeltaTime;
-                if (curShootTimer <= 0)
+                shootTimer -= Time.fixedDeltaTime;
+                if (shootTimer <= 0)
                 {
                     Instantiate(projectile, transform.position, transform.rotation);
-                    curShootTimer = shootTimer;
+                    shootTimer = shootDelay + UnityEngine.Random.Range(-0.2f, 0.2f);
+                    GetComponent<AudioSource>().Play();
                 }
             }
             else
@@ -63,6 +68,13 @@ public class Enemy : MonoBehaviour {
     public void Explode()
     {
         Instantiate(deathExplosion, transform.position, transform.rotation);
+        Destroy(gameObject);
+    }
+
+    public void TakeDamage(float knockbackX, float knockbackY)
+    {
+        Instantiate(smallExplosion, transform.position, transform.rotation);
+        //transform.position += new Vector3(knockbackX, knockbackY, 0);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -70,9 +82,11 @@ public class Enemy : MonoBehaviour {
         //if we get hit, we're dead
         if (other.gameObject.tag == "PlayerWeapon")
         {
-            Instantiate(deathExplosion, transform.position, transform.rotation);
+            TakeDamage((transform.position.x - other.transform.position.x), (transform.position.y - other.transform.position.y));
             Destroy(other.gameObject);
-            Destroy(gameObject);
+            health--;
+            if (health <= 0)
+                Explode();
         }
     }
 }

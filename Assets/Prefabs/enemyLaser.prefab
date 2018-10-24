@@ -21,9 +21,9 @@ GameObject:
   - component: {fileID: 4047255378205854}
   - component: {fileID: 33692991632318796}
   - component: {fileID: 23751268596022728}
-  - component: {fileID: 65121745988234310}
   - component: {fileID: 54698961843995878}
   - component: {fileID: 114550690407223334}
+  - component: {fileID: 136474461571404454}
   m_Layer: 0
   m_Name: EnemyLaser
   m_TagString: EnemyWeapon
@@ -38,8 +38,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1217035404442762}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.110773, y: -2.380448, z: 103.71347}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 3}
+  m_LocalPosition: {x: 0.40124226, y: -1.3273218, z: 25.67}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -85,7 +85,7 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1217035404442762}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300000, guid: 6e6b39ac7c2eb784bb29374258e4efbd, type: 3}
 --- !u!54 &54698961843995878
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -101,18 +101,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &65121745988234310
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1217035404442762}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.7, y: 0.7, z: 0.7}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114550690407223334
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -124,3 +112,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37877e2d4d33f794688bd2a81f64f2ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!136 &136474461571404454
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1217035404442762}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.4
+  m_Height: 1.0251942
+  m_Direction: 2
+  m_Center: {x: -0.00019598007, y: -0.0030210018, z: 0.10965824}

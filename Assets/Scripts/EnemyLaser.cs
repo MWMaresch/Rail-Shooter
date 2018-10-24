@@ -11,8 +11,9 @@ public class EnemyLaser : MonoBehaviour {
     void Start () {
         player = GameObject.FindWithTag("Player");
         transform.LookAt(player.transform);
-        //moving it forward at first prevents it from clipping into its own ship
-        transform.position += transform.forward * 2f;
+        //moving it forward at first prevents it from clipping into its own ship too much
+        //also move it down a bit to align with the sprite's gun
+        transform.position += new Vector3(transform.forward.x, transform.forward.y - 0.2f, transform.forward.z);
     }
 	
 	// FixedUpdate is called once every 16ms

@@ -22,8 +22,8 @@ GameObject:
   - component: {fileID: 33355007949132876}
   - component: {fileID: 23470314397175328}
   - component: {fileID: 114575267990282382}
-  - component: {fileID: 65402286216291906}
   - component: {fileID: 54384480091646054}
+  - component: {fileID: 136032389363414532}
   m_Layer: 0
   m_Name: Laser
   m_TagString: PlayerWeapon
@@ -39,7 +39,7 @@ Transform:
   m_GameObject: {fileID: 1346093229323038}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.658, z: 24.292}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 6}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -85,7 +85,7 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1346093229323038}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300000, guid: 6e6b39ac7c2eb784bb29374258e4efbd, type: 3}
 --- !u!54 &54384480091646054
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -101,18 +101,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &65402286216291906
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1346093229323038}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.5, y: 1.5, z: 1.3899412}
-  m_Center: {x: 0, y: 0, z: -0.1949703}
 --- !u!114 &114575267990282382
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -124,3 +112,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eccd61ffa384504449b92952e6dbb2ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!136 &136032389363414532
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1346093229323038}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 2
+  m_Center: {x: -0.00019599497, y: -0.003020987, z: -0.22417897}
