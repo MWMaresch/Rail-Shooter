@@ -7,18 +7,21 @@ public class EnemyLaser : MonoBehaviour {
 
     private GameObject player;
     private float lifeTime = 7f;
+    private Vector3 direction;
     // Use this for initialization
     void Start () {
         player = GameObject.FindWithTag("Player");
         transform.LookAt(player.transform);
-        //moving it forward at first prevents it from clipping into its own ship too much
-        //also move it down a bit to align with the sprite's gun
-        transform.position += new Vector3(transform.forward.x, transform.forward.y - 0.2f, transform.forward.z);
+        direction = transform.forward;
+        //move it down a bit to align with the sprite's gun
+        transform.position += new Vector3(0f, -0.2f, 0f);
+        transform.forward = -Camera.main.transform.forward;
     }
 	
 	// FixedUpdate is called once every 16ms
-	void FixedUpdate () {
-        transform.position += transform.forward * 0.2f;
+	void FixedUpdate ()
+    {
+        transform.position += direction * 0.2f;
         lifeTime -= Time.fixedDeltaTime;
         if (lifeTime <= 0f)
             Destroy(gameObject);

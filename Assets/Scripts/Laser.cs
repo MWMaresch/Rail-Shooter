@@ -7,21 +7,24 @@ public class Laser : MonoBehaviour {
     //public Camera cam;
     private GameObject crosshair;
     private float lifeTime = 3f;
-	// Use this for initialization
-	void Start ()
+    private Vector3 direction;
+    // Use this for initialization
+    void Start ()
     {
         crosshair = GameObject.FindGameObjectWithTag("Crosshair");
         Vector3 crosshairScreenPos = Camera.main.WorldToScreenPoint(crosshair.transform.position);
         Vector3 aimPos = Camera.main.ScreenToWorldPoint(new Vector3(crosshairScreenPos.x, crosshairScreenPos.y, 50f));
         transform.LookAt(aimPos);
-        //move it forward a bit so it doesn't clip through the ship
-        transform.position += transform.forward * 3f;
+        direction = transform.forward;
+        transform.forward = -Camera.main.transform.forward;
     }
 	
 	// Update is called once per frame
 	void FixedUpdate ()
     {
-        transform.position += transform.forward * 1.0f;
+        transform.Rotate(new Vector3(0,0,1f), 45f);
+        //Debug.Log("rot z is " + transform.rotation.z);
+        transform.position += direction;
         lifeTime -= Time.fixedDeltaTime;
         if (lifeTime <= 0f)
             Destroy(gameObject);

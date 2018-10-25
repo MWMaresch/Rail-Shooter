@@ -9,7 +9,8 @@ public class Player : MonoBehaviour {
     public Transform crosshair;
     public Camera cam;
     public GameObject laser;
-    public GameObject smallExplosion;
+    public GameObject smallImpact;
+    public GameObject muzzleFlash;
 
     private float curSpeedH;
     private Vector3 prevPosition;
@@ -76,6 +77,7 @@ public class Player : MonoBehaviour {
             shooting = false;
             Instantiate(laser, transform.position, transform.rotation);
             GetComponent<AudioSource>().Play();
+            Instantiate(muzzleFlash,transform.position,new Quaternion(transform.rotation.x, transform.rotation.y, UnityEngine.Random.Range(-1f, 1f), transform.rotation.w));
         }
 
         //here we check to make sure the ship doesn't go out of bounds, and if it does, we stop it
@@ -94,15 +96,11 @@ public class Player : MonoBehaviour {
         prevPosition = transform.position;
         transform.position += 0.1f * new Vector3(crosshair.transform.position.x - transform.position.x, crosshair.transform.position.y - 0.4f - transform.position.y);
         curSpeedH = transform.position.x - prevPosition.x;
-        //if (damageTimer <= 0)
-            transform.rotation = new Quaternion(transform.rotation.x, transform.rotation.y, 0.1f * (float)Math.Sin(damageTimer * 25f) - curSpeedH, transform.rotation.w);
-        //else
-            //transform.rotation = new Quaternion(transform.rotation.x, transform.rotation.y, 0.1f*(float)Math.Sin(damageTimer * 25f), transform.rotation.w);
+        transform.rotation = new Quaternion(transform.rotation.x, transform.rotation.y, 0.2f * damageTimer * (float)Math.Sin(damageTimer * 30f) - curSpeedH, transform.rotation.w);
     }
 
     public void TakeDamage(float knockbackX, float knockbackY)
     {
-        Instantiate(smallExplosion, transform.position, transform.rotation);
         transform.position += new Vector3(knockbackX, knockbackY, 0);
         //temporary indicator that we're hit
         GetComponent<Renderer>().enabled = false;
@@ -115,6 +113,7 @@ public class Player : MonoBehaviour {
         {
             if (other.tag == "EnemyWeapon")
             {
+                Instantiate(smallImpact, transform.position, transform.rotation);
                 TakeDamage(other.transform.forward.x, other.transform.forward.y);
                 Destroy(other.gameObject);
             }

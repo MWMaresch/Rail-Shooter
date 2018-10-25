@@ -5,11 +5,21 @@ using UnityEngine;
 public class DestroyAfterAnimation : MonoBehaviour {
     private float animTime;
     private bool hasSound;
+    private bool hasAnimation;
 	// Use this for initialization
 	void Start () {
         if (GetComponent<AudioSource>() != null)
             hasSound = true;
-		animTime = GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length;
+        else
+            hasSound = false;
+        if (GetComponent<Animator>() != null)
+            hasAnimation = true;
+        else
+            hasAnimation = false;
+        if (hasAnimation)
+            animTime = GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length;
+        else
+            animTime = 0.02f;
     }
 	
 	void FixedUpdate () {

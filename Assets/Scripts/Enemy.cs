@@ -20,6 +20,7 @@ public class Enemy : MonoBehaviour {
     public GameObject projectile;
     public GameObject smallExplosion;
     public GameObject deathExplosion;
+    public GameObject muzzleFlash;
 
 	// Use this for initialization
 	void Start () {
@@ -58,6 +59,7 @@ public class Enemy : MonoBehaviour {
                 shootTimer -= Time.fixedDeltaTime;
                 if (shootTimer <= 0 && distance < minShootDistance)
                 {
+                    Instantiate(muzzleFlash, new Vector3(transform.position.x, transform.position.y-0.2f, transform.position.z - 0.2f), transform.rotation);
                     Instantiate(projectile, transform.position, transform.rotation);
                     shootTimer = shootDelay + UnityEngine.Random.Range(-0.2f, 0.2f);
                     GetComponent<AudioSource>().Play();
