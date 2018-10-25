@@ -706,8 +706,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1604461870}
   m_LocalRotation: {x: 0, y: 0, z: 0.35436448, w: 0.9351074}
-  m_LocalPosition: {x: -0.91, y: 0.259, z: 0}
-  m_LocalScale: {x: 0.10000001, y: 1.4, z: 0.01}
+  m_LocalPosition: {x: -0.833, y: 0.172, z: 0}
+  m_LocalScale: {x: 0.10000001, y: 1.2, z: 0.01}
   m_Children: []
   m_Father: {fileID: 1626884592}
   m_RootOrder: 0
@@ -738,6 +738,7 @@ GameObject:
   - component: {fileID: 1626884596}
   - component: {fileID: 1626884597}
   - component: {fileID: 1626884598}
+  - component: {fileID: 1626884595}
   m_Layer: 0
   m_Name: Player Ship
   m_TagString: Player
@@ -785,7 +786,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 34.5, y: 20.5}
+  m_Size: {x: 3.84, y: 3.84}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -835,6 +836,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.6, y: 0.28759205, z: 0.01}
   m_Center: {x: 0, y: -0.15401751, z: 0}
+--- !u!95 &1626884595
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1626884590}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 680b8aeab191c344d83fd350192b8df7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!65 &1626884596
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -980,8 +999,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1802740497}
   m_LocalRotation: {x: -0, y: -0, z: -0.35436642, w: 0.9351067}
-  m_LocalPosition: {x: 0.91, y: 0.259, z: 0}
-  m_LocalScale: {x: 0.1, y: 1.4, z: 0.01}
+  m_LocalPosition: {x: 0.833, y: 0.172, z: 0}
+  m_LocalScale: {x: 0.1, y: 1.2, z: 0.01}
   m_Children: []
   m_Father: {fileID: 1626884592}
   m_RootOrder: 1
@@ -1028,7 +1047,7 @@ MonoBehaviour:
   spawnDelay: 1.1
   enemy: {fileID: 1815403575242682, guid: b990e44da7caee8429fd96ee171f746c, type: 2}
   randPosX: 50
-  randPosY: 10
+  randPosY: 14
 --- !u!4 &1871511299
 Transform:
   m_ObjectHideFlags: 0
@@ -1036,7 +1055,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1871511297}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 70.81}
+  m_LocalPosition: {x: 0, y: 15, z: 70.81}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

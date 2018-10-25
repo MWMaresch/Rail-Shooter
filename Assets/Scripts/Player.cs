@@ -94,7 +94,10 @@ public class Player : MonoBehaviour {
         prevPosition = transform.position;
         transform.position += 0.1f * new Vector3(crosshair.transform.position.x - transform.position.x, crosshair.transform.position.y - 0.4f - transform.position.y);
         curSpeedH = transform.position.x - prevPosition.x;
-        transform.rotation = new Quaternion(transform.rotation.x, transform.rotation.y, -curSpeedH, transform.rotation.w);
+        //if (damageTimer <= 0)
+            transform.rotation = new Quaternion(transform.rotation.x, transform.rotation.y, 0.1f * (float)Math.Sin(damageTimer * 25f) - curSpeedH, transform.rotation.w);
+        //else
+            //transform.rotation = new Quaternion(transform.rotation.x, transform.rotation.y, 0.1f*(float)Math.Sin(damageTimer * 25f), transform.rotation.w);
     }
 
     public void TakeDamage(float knockbackX, float knockbackY)
@@ -112,13 +115,13 @@ public class Player : MonoBehaviour {
         {
             if (other.tag == "EnemyWeapon")
             {
-                TakeDamage(other.transform.forward.x * 10f, other.transform.forward.y * 10f);
+                TakeDamage(other.transform.forward.x, other.transform.forward.y);
                 Destroy(other.gameObject);
             }
             else if (other.gameObject.tag == "Enemy")
             {
                 other.GetComponent<Enemy>().Explode();
-                TakeDamage(10f*(transform.position.x - other.transform.position.x),10f*(transform.position.y - other.transform.position.y));
+                TakeDamage(transform.position.x - other.transform.position.x,transform.position.y - other.transform.position.y);
             }
         }
     }

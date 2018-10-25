@@ -10,11 +10,12 @@ public class Enemy : MonoBehaviour {
     private float shootTimer;
     private bool reachedPlayer;
     private int health;
+    private float hitColorTimer;
 
     public int maxHealth;
-    public float targetDistance;
+    public float minShootDistance;
+    public float rammingDistance;
     public float speed;
-    public float minPlayerDistance;
     public float shootDelay;
     public GameObject projectile;
     public GameObject smallExplosion;
@@ -26,24 +27,36 @@ public class Enemy : MonoBehaviour {
         shootTimer = shootDelay;
         reachedPlayer = false;
         health = maxHealth;
+        hitColorTimer = 0f;
     }
     
     // FixedUpdate is called once every 16ms
     void FixedUpdate()
     {
+        if (hitColorTimer > 0f)
+        {
+            hitColorTimer -= Time.fixedDeltaTime;
+            if (GetComponent<Renderer>().material.color == Color.red)
+                GetComponent<Renderer>().material.color = Color.white;
+            else
+                GetComponent<Renderer>().material.color = Color.red;
+        }
+        else
+            GetComponent<Renderer>().material.color = Color.white;
+
         if (!reachedPlayer)
         {
 
             //move towards the player, but not if we're too close already
             float distance = Vector3.Distance(transform.position, player.transform.position);
-            if (distance > targetDistance)
+            if (distance > rammingDistance)
             {
                 direction = (player.transform.position - transform.position).normalized;
                 transform.position += direction * speed;
 
                 //every set amount of time, shoot at the player
                 shootTimer -= Time.fixedDeltaTime;
-                if (shootTimer <= 0)
+                if (shootTimer <= 0 && distance < minShootDistance)
                 {
                     Instantiate(projectile, transform.position, transform.rotation);
                     shootTimer = shootDelay + UnityEngine.Random.Range(-0.2f, 0.2f);
@@ -85,6 +98,8 @@ public class Enemy : MonoBehaviour {
             TakeDamage((transform.position.x - other.transform.position.x), (transform.position.y - other.transform.position.y));
             Destroy(other.gameObject);
             health--;
+           // GetComponent<Renderer>().material.color = Color.red;
+            hitColorTimer = 0.5f;
             if (health <= 0)
                 Explode();
         }

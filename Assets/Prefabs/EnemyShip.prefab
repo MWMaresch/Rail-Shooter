@@ -162,9 +162,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 3
-  targetDistance: 5
+  minShootDistance: 30
+  rammingDistance: 5
   speed: 0.2
-  minPlayerDistance: 1
   shootDelay: 1.2
   projectile: {fileID: 1217035404442762, guid: 590007bde8b0d854a88eb8d1281c9aad, type: 2}
   smallExplosion: {fileID: 1128768668983796, guid: 5dcb480e12f919849aaf327d9f34dda4,
