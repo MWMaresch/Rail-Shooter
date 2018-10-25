@@ -11,10 +11,12 @@ public class Player : MonoBehaviour {
     public GameObject laser;
     public GameObject smallImpact;
     public GameObject muzzleFlash;
+    public float xPosLimit;
+    public float yPosLimit;
 
     private float curSpeedH;
     private Vector3 prevPosition;
-    private bool mouseEnabled = false;
+    private bool mouseEnabled = true;
     private bool shooting = false;
     private float damageTimer;
 
@@ -66,8 +68,8 @@ public class Player : MonoBehaviour {
         }
         else if (!GetComponent<Renderer>().enabled)
             GetComponent<Renderer>().enabled = true;
-        //move the crosshair
 
+        //move the crosshair
         if(!mouseEnabled)
             crosshair.transform.position += new Vector3(Input.GetAxis("Horizontal") * speed, Input.GetAxis("Vertical") * speed);
 
@@ -80,15 +82,15 @@ public class Player : MonoBehaviour {
             Instantiate(muzzleFlash,transform.position,new Quaternion(transform.rotation.x, transform.rotation.y, UnityEngine.Random.Range(-1f, 1f), transform.rotation.w));
         }
 
-        //here we check to make sure the ship doesn't go out of bounds, and if it does, we stop it
-        if (crosshair.transform.position.x < -4.5f)
-            crosshair.transform.position = new Vector3(-4.5f, crosshair.transform.position.y, crosshair.transform.position.z);
-        else if (crosshair.transform.position.x > 4.5f)
-            crosshair.transform.position = new Vector3(4.5f, crosshair.transform.position.y, crosshair.transform.position.z);
-        if (crosshair.transform.position.y < -1.5f)
-            crosshair.transform.position = new Vector3(crosshair.transform.position.x, -1.5f, crosshair.transform.position.z);
-        else if (crosshair.transform.position.y > 3.5f)
-            crosshair.transform.position = new Vector3(crosshair.transform.position.x, 3.5f, crosshair.transform.position.z);
+        //here we check to make sure the ship and crosshair don't go out of bounds, and they do, we stop it
+        if (crosshair.transform.position.x < -xPosLimit)
+            crosshair.transform.position = new Vector3(-xPosLimit, crosshair.transform.position.y, crosshair.transform.position.z);
+        else if (crosshair.transform.position.x > xPosLimit)
+            crosshair.transform.position = new Vector3(xPosLimit, crosshair.transform.position.y, crosshair.transform.position.z);
+        if (crosshair.transform.position.y < -yPosLimit + 1.5f)
+            crosshair.transform.position = new Vector3(crosshair.transform.position.x, -yPosLimit + 1.5f, crosshair.transform.position.z);
+        else if (crosshair.transform.position.y > yPosLimit + 1.5f)
+            crosshair.transform.position = new Vector3(crosshair.transform.position.x, yPosLimit + 1.5f, crosshair.transform.position.z);
         if (transform.position.y < -1f)
             transform.position = new Vector3(transform.position.x, -1f, transform.position.z);
 

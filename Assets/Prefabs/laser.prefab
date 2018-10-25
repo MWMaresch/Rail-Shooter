@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 136032389363414532}
   - component: {fileID: 212845739202246042}
   - component: {fileID: 114007186023719650}
+  - component: {fileID: 95935291337903114}
   m_Layer: 0
   m_Name: laser
   m_TagString: PlayerWeapon
@@ -59,6 +60,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!95 &95935291337903114
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1346093229323038}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c6b035ecd4b85b746a45797d32727593, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114007186023719650
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -81,6 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eccd61ffa384504449b92952e6dbb2ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  splash: {fileID: 21300000, guid: 787e51a3f7ffb4246bf6d2288bcf4f60, type: 3}
 --- !u!136 &136032389363414532
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -128,7 +148,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: -24
   m_Sprite: {fileID: 21300000, guid: b7031a587dbdd2242864e673d163eefe, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
