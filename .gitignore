@@ -5,6 +5,14 @@
 [Bb]uilds/
 Assets/AssetStoreTools*
 
+#uuuhhh
+*.psd
+*.clip
+*.aseprite
+*.ase
+ignore_*
+*_ignore
+
 # Visual Studio cache directory
 .vs/
 
