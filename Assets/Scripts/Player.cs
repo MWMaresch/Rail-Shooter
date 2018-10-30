@@ -22,6 +22,8 @@ public class Player : MonoBehaviour {
     private Renderer muzzleFlashRend;
     private Vector3 cameraOrigPos;
 
+    private float screenSnapFraction;
+
     // Use this for initialization
     void Start ()
     {
@@ -31,7 +33,8 @@ public class Player : MonoBehaviour {
         muzzleFlashRend.enabled = false;
 
         //this will eventually be moved to the main menu or something else that starts much earlier
-        Application.targetFrameRate = 180;
+        Application.targetFrameRate = 60;
+        screenSnapFraction = Screen.width / 480f;
         //Debug.Log("target fps is: " + Application.targetFrameRate);
         //Screen.SetResolution(1440, 810, false, 180);
         //480, 960, 1440
@@ -42,9 +45,10 @@ public class Player : MonoBehaviour {
     {
         if (mouseEnabled)
         {
-            Vector3 mousePos = Input.mousePosition;
+            Vector3 mousePos = new Vector3 (Mathf.RoundToInt(Input.mousePosition.x / screenSnapFraction) * screenSnapFraction, Mathf.RoundToInt(Input.mousePosition.y / screenSnapFraction) * screenSnapFraction, 5f);
+            
             //this value must be the distance between the camera and the crosshair
-            mousePos.z = 5f;
+            //mousePos.z = 5f;
             mousePos = cam.ScreenToWorldPoint(mousePos);
             crosshair.transform.position = new Vector3(mousePos.x, mousePos.y, mousePos.z);
         }
@@ -93,10 +97,11 @@ public class Player : MonoBehaviour {
         }
 
         //move the crosshair
-            if (!mouseEnabled)
+        if (!mouseEnabled)
         {
             crosshair.transform.position += new Vector3(Input.GetAxis("Horizontal") * speed, Input.GetAxis("Vertical") * speed);
         }
+        crosshair.LookAt(cam.transform);
 
         //here we check to make sure the ship and crosshair don't go out of bounds, and if they do, we stop it
         Vector3 screenCH = cam.WorldToScreenPoint(crosshair.transform.position);
@@ -114,7 +119,7 @@ public class Player : MonoBehaviour {
         //rotate the crosshair with the camera to prevent aliasing
         crosshair.rotation = cam.transform.rotation;
 
-        if ((shooting && lastShootTime > 0.02f) || (autoShooting && lastShootTime > 0.2f))
+        if ((shooting && lastShootTime > 0.02f) || (autoShooting && lastShootTime > 0.15f))
         {
             muzzleFlash.transform.rotation = new Quaternion(transform.rotation.x, transform.rotation.y, UnityEngine.Random.Range(-1f, 1f), transform.rotation.w);
             lastShootTime = 0f;

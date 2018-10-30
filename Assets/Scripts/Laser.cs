@@ -40,6 +40,7 @@ public class Laser : MonoBehaviour {
         if (other.gameObject.tag == "Water")
         {
             splashed = true;
+            GetComponent<AudioSource>().Play();
             GetComponent<Animator>().enabled = true;
             lifeTime = GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length;
             transform.position = new Vector3(transform.position.x, -2.6f, transform.position.z);
