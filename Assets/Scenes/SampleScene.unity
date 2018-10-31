@@ -1728,26 +1728,27 @@ MonoBehaviour:
     spawnTime: 1
     position: {x: 5, y: 20, z: 70}
   - gameObj: {fileID: 1815403575242682, guid: b990e44da7caee8429fd96ee171f746c, type: 2}
-    spawnTime: 2
+    spawnTime: 1
     position: {x: 50, y: 5, z: 70}
   - gameObj: {fileID: 1815403575242682, guid: b990e44da7caee8429fd96ee171f746c, type: 2}
-    spawnTime: 3
+    spawnTime: 2
     position: {x: -50, y: 20, z: 70}
   - gameObj: {fileID: 1815403575242682, guid: b990e44da7caee8429fd96ee171f746c, type: 2}
-    spawnTime: 4
+    spawnTime: 2
     position: {x: 0, y: 5, z: 70}
   - gameObj: {fileID: 1815403575242682, guid: b990e44da7caee8429fd96ee171f746c, type: 2}
-    spawnTime: 5
-    position: {x: 30, y: 30, z: 70}
+    spawnTime: 3
+    position: {x: -30, y: 30, z: 70}
   - gameObj: {fileID: 1815403575242682, guid: b990e44da7caee8429fd96ee171f746c, type: 2}
-    spawnTime: 6
-    position: {x: 40, y: 10, z: 70}
+    spawnTime: 3
+    position: {x: -40, y: 10, z: 70}
   - gameObj: {fileID: 1815403575242682, guid: b990e44da7caee8429fd96ee171f746c, type: 2}
-    spawnTime: 7
+    spawnTime: 4
     position: {x: 20, y: 5, z: 70}
   - gameObj: {fileID: 1815403575242682, guid: b990e44da7caee8429fd96ee171f746c, type: 2}
-    spawnTime: 8
+    spawnTime: 4
     position: {x: 10, y: 30, z: 70}
+  loopSpawns: 1
 --- !u!4 &1871511299
 Transform:
   m_ObjectHideFlags: 0
