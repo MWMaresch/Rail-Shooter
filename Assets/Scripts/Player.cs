@@ -99,7 +99,10 @@ public class Player : MonoBehaviour {
         //move the crosshair
         if (!mouseEnabled)
         {
-            crosshair.transform.position += new Vector3(Input.GetAxis("Horizontal") * speed, Input.GetAxis("Vertical") * speed);
+            if (Input.GetButton("Sprint"))
+                crosshair.transform.position += new Vector3(Input.GetAxis("Horizontal") * 1.5f * speed, Input.GetAxis("Vertical") * 1.5f * speed);
+            else
+                crosshair.transform.position += new Vector3(Input.GetAxis("Horizontal") * 0.75f * speed, Input.GetAxis("Vertical") * 0.75f * speed);
         }
         crosshair.LookAt(cam.transform);
 
@@ -137,7 +140,7 @@ public class Player : MonoBehaviour {
         prevPosition = transform.position;
         transform.position += 0.1f * new Vector3(crosshair.transform.position.x - transform.position.x, crosshair.transform.position.y - 0.4f - transform.position.y);
         curSpeedH = transform.position.x - prevPosition.x;
-        transform.rotation = new Quaternion(transform.rotation.x, transform.rotation.y, 0.2f * damageTimer * (float)Math.Sin(damageTimer * 30f) - curSpeedH, transform.rotation.w);
+        transform.rotation = new Quaternion(transform.rotation.x, transform.rotation.y, 0.2f * damageTimer * (float)Math.Sin(damageTimer * 30f) - curSpeedH * 1.5f, transform.rotation.w);
     }
 
     public void TakeDamage(float knockbackX, float knockbackY)
