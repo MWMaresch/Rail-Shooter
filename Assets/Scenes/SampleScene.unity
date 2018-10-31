@@ -438,7 +438,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 422716109}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 18.1}
+  m_LocalPosition: {x: 0, y: 0.5, z: 18.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -575,7 +575,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 534669902}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 18.1}
+  m_LocalPosition: {x: 0, y: 0.5, z: 18.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1706,7 +1706,7 @@ GameObject:
   - component: {fileID: 1871511299}
   - component: {fileID: 1871511298}
   m_Layer: 0
-  m_Name: EnemySpawner
+  m_Name: ObjectSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1723,10 +1723,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bddfc8d9bb7f4cb4795382a48007bd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnDelay: 1
-  enemy: {fileID: 1815403575242682, guid: b990e44da7caee8429fd96ee171f746c, type: 2}
-  randPosX: 50
-  randPosY: 14
+  spawns:
+  - gameObj: {fileID: 1815403575242682, guid: b990e44da7caee8429fd96ee171f746c, type: 2}
+    spawnTime: 1
+    position: {x: 5, y: 20, z: 70}
+  - gameObj: {fileID: 1815403575242682, guid: b990e44da7caee8429fd96ee171f746c, type: 2}
+    spawnTime: 2
+    position: {x: 50, y: 5, z: 70}
+  - gameObj: {fileID: 1815403575242682, guid: b990e44da7caee8429fd96ee171f746c, type: 2}
+    spawnTime: 3
+    position: {x: -50, y: 20, z: 70}
+  - gameObj: {fileID: 1815403575242682, guid: b990e44da7caee8429fd96ee171f746c, type: 2}
+    spawnTime: 4
+    position: {x: 0, y: 5, z: 70}
+  - gameObj: {fileID: 1815403575242682, guid: b990e44da7caee8429fd96ee171f746c, type: 2}
+    spawnTime: 5
+    position: {x: 30, y: 30, z: 70}
+  - gameObj: {fileID: 1815403575242682, guid: b990e44da7caee8429fd96ee171f746c, type: 2}
+    spawnTime: 6
+    position: {x: 40, y: 10, z: 70}
+  - gameObj: {fileID: 1815403575242682, guid: b990e44da7caee8429fd96ee171f746c, type: 2}
+    spawnTime: 7
+    position: {x: 20, y: 5, z: 70}
+  - gameObj: {fileID: 1815403575242682, guid: b990e44da7caee8429fd96ee171f746c, type: 2}
+    spawnTime: 8
+    position: {x: 10, y: 30, z: 70}
 --- !u!4 &1871511299
 Transform:
   m_ObjectHideFlags: 0
