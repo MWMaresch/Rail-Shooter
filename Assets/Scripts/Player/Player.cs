@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum LaserType { Single, Twin, somethingelse };
+
 public class Player : MonoBehaviour {
 
     public float speed;
@@ -21,19 +23,21 @@ public class Player : MonoBehaviour {
     private float damageTimer;
     private Renderer muzzleFlashRend;
     private Vector3 cameraOrigPos;
+    private LaserType laserType;
 
     private float screenSnapFraction;
 
     // Use this for initialization
     void Start ()
     {
+        laserType = LaserType.Twin;
         cameraOrigPos = Camera.main.transform.position;
         lastShootTime = 999f;
         muzzleFlashRend = muzzleFlash.GetComponent<Renderer>();
         muzzleFlashRend.enabled = false;
 
         //this will eventually be moved to the main menu or something else that starts much earlier
-        Application.targetFrameRate = 60;
+        Application.targetFrameRate = 120;
         screenSnapFraction = Screen.width / 480f;
         //Debug.Log("target fps is: " + Application.targetFrameRate);
         //Screen.SetResolution(1440, 810, false, 180);
@@ -127,7 +131,15 @@ public class Player : MonoBehaviour {
             muzzleFlash.transform.rotation = new Quaternion(transform.rotation.x, transform.rotation.y, UnityEngine.Random.Range(-1f, 1f), transform.rotation.w);
             lastShootTime = 0f;
             shooting = false;
-            Instantiate(laser, transform.position, transform.rotation);
+            if (laserType == LaserType.Single)
+            {
+                Instantiate(laser, transform.position, transform.rotation);
+            }
+            else if (laserType == LaserType.Twin)
+            {
+                Instantiate(laser, new Vector3(transform.position.x - 0.5f, transform.position.y, transform.position.z), transform.rotation);
+                Instantiate(laser, new Vector3(transform.position.x + 0.5f, transform.position.y, transform.position.z), transform.rotation);
+            }
             GetComponent<AudioSource>().Play();
             muzzleFlashRend.enabled = true;
         }
