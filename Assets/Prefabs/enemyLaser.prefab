@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 114427758942153560}
   - component: {fileID: 135389958847879678}
   m_Layer: 0
-  m_Name: EnemyLaser
+  m_Name: enemyLaser
   m_TagString: EnemyWeapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
