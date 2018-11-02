@@ -9,6 +9,8 @@ TagManager:
   - Enemy
   - EnemyWeapon
   - Water
+  - TwinPowerup
+  - Canvas
   layers:
   - Default
   - TransparentFX

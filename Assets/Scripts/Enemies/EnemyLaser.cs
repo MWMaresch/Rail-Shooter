@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyLaser : MonoBehaviour {
 
     public GameObject crosshair;
+    public float speed;
 
     private GameObject player;
     private float lifeTime = 7f;
@@ -24,7 +25,7 @@ public class EnemyLaser : MonoBehaviour {
 	// FixedUpdate is called once every 16ms
 	void FixedUpdate ()
     {
-        transform.position += direction * 0.2f;
+        transform.position += direction * speed;
         lifeTime -= Time.fixedDeltaTime;
         if (lifeTime <= 0f)
             Destroy(gameObject);

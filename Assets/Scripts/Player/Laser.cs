@@ -37,7 +37,7 @@ public class Laser : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Water")
+        if (!splashed && other.gameObject.tag == "Water")
         {
             splashed = true;
             GetComponent<AudioSource>().Play();
@@ -45,7 +45,7 @@ public class Laser : MonoBehaviour {
             lifeTime = GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length;
             transform.position = new Vector3(transform.position.x, -2.6f, transform.position.z);
             transform.rotation = new Quaternion(0, 0, 0, 0);
-            direction = new Vector3(0, 0, -0.5f);
+            direction = new Vector3(0, 0, -GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().zSpeed * 0.6f);
         }
     }
 }

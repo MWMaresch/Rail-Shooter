@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class WaterAnimation : MonoBehaviour {
 
-    public float waterSpeed = 0.05f;
+    private float waterSpeed;
     private float offset = 0f;
     
 
     // Use this for initialization
     void Start ()
     {
+        waterSpeed = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().zSpeed * 0.1f;
     }
 	
 	// FixedUpdate is called once every 16ms

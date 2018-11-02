@@ -6,39 +6,24 @@ public class FodderEnemy : Enemy {
 
     private GameObject player;
     private Vector3 direction;
-    private float changeDirTimer;
 
-    public float minYPosition;
-    public float speed;
-    public float changeDirDelay;
+    public float speed;    
+    public GameObject drop;
+
+    private float timer;
 
     // Use this for initialization
-    public override void Start () {
-        minYPosition = GameObject.FindGameObjectWithTag("Water").transform.position.y;
-        player = GameObject.FindWithTag("Player");
-        direction = (player.transform.position - transform.position).normalized + new Vector3(Random.Range(-speed, speed), Random.Range(-speed, speed), 0f);
-        changeDirTimer = changeDirDelay;
-        base.Start();
+    public override void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+        direction = speed * (player.transform.position - transform.position).normalized;
+        timer = 0;
     }
-	
-	public override void FixedUpdate () {
-        base.FixedUpdate();
-        changeDirTimer -= Time.fixedDeltaTime;
-        if (changeDirTimer <= 0)
-        {
-            direction = (player.transform.position - transform.position).normalized + new Vector3(Random.Range(-speed, speed), Random.Range(-speed, speed), 0f);
-            direction.z = -speed * 0.5f;
-            changeDirTimer = changeDirDelay;
-        }
-        transform.position += direction * speed;
-        if (transform.position.y < minYPosition)
-        {
-            direction.y = Mathf.Abs(direction.y);
-            transform.position += new Vector3(0f, direction.y, 0f);
-        }
-        if (transform.position.z < Camera.main.transform.position.z)
-        {
-            Destroy(gameObject);
-        }
+
+    public override void FixedUpdate()
+    {
+        timer += Time.deltaTime;
+        transform.position += direction + new Vector3(Mathf.Sin(timer * 4f) * speed, Mathf.Cos(timer * 4f) * speed, 0);
+
     }
 }
