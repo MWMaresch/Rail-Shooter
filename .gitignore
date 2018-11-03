@@ -6,16 +6,6 @@
 Assets/AssetStoreTools*
 
 #uuuhhh
-*.psd
-*.clip
-*.aseprite
-*.ase
-
-*.psd.meta
-*.clip.meta
-*.aseprite.meta
-*.ase.meta
-
 ignore_*
 *_ignore
 
