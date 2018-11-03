@@ -19,6 +19,7 @@ public class FodderEnemy : Enemy {
         player = GameObject.FindGameObjectWithTag("Player");
         direction = speed * (player.transform.position - transform.position).normalized;
         timer = 0;
+        GetComponent<SpriteRenderer>().color = Color.green;
     }
 
     public override void FixedUpdate()

@@ -12,15 +12,25 @@ public class ShinyEnemy : Enemy
 
     private float timer;
 
+    private bool colorToggle;
+
     // Use this for initialization
     public override void Start () {
         health = 1;
         timer = 0;
+        GetComponent<SpriteRenderer>().color = Color.magenta;
+        colorToggle = true;
 	}
 
     public override void FixedUpdate() {
         timer += Time.deltaTime;
         transform.position += new Vector3(speedX, Mathf.Sin(timer * 5f) * speedY, -speedZ);
+        GetComponent<SpriteRenderer>().color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
+        /*if (colorToggle)
+            GetComponent<SpriteRenderer>().color = Color.cyan;
+        else
+            GetComponent<SpriteRenderer>().color = Color.black;
+        colorToggle = !colorToggle;*/
 
     }
 

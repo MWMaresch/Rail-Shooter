@@ -8,6 +8,7 @@ public enum LaserType { Single, Twin, somethingelse };
 
 public class Player : MonoBehaviour {
 
+    public float maxSpeed;
     public float controlSpeed;
     public float zSpeed;
     public Transform crosshair;
@@ -31,6 +32,7 @@ public class Player : MonoBehaviour {
     private float damageTimer;
     private Renderer muzzleFlashRend;
     private Vector3 cameraOrigPos;
+    private Vector3 targetDirection;
     private LaserType laserType;
     private bool isAlive;
     private bool exploded;
@@ -67,7 +69,8 @@ public class Player : MonoBehaviour {
             //this value must be the distance between the camera and the crosshair
             //mousePos.z = 5f;
             mousePos = cam.ScreenToWorldPoint(mousePos);
-            crosshair.transform.position = new Vector3(mousePos.x, mousePos.y, mousePos.z);
+            if (Time.timeScale > 0)
+                crosshair.transform.position = new Vector3(mousePos.x, mousePos.y, mousePos.z);
         }
         //for now, because menus haven't been made yet, to switch to mouse controls, we press a button to toggle it
         if (Input.GetButtonDown("ToggleMouse")) 
@@ -168,9 +171,16 @@ public class Player : MonoBehaviour {
 
             //move the ship, and rotate it depending on how much it moved
             prevPosition = transform.position;
-            transform.position += 0.1f * new Vector3(crosshair.transform.position.x - transform.position.x, crosshair.transform.position.y - 0.4f - transform.position.y);
+            targetDirection = new Vector3(crosshair.transform.position.x - transform.position.x, crosshair.transform.position.y - 0.4f - transform.position.y);
+
+            if (targetDirection.magnitude * 0.2f >= maxSpeed)
+                transform.position += maxSpeed * targetDirection.normalized;
+            else
+                transform.position += 0.2f * targetDirection;
+
             curSpeedH = transform.position.x - prevPosition.x;
-            transform.rotation = new Quaternion(transform.rotation.x, transform.rotation.y, 0.2f * damageTimer * (float)Math.Sin(damageTimer * 30f) - curSpeedH * 1.5f, transform.rotation.w);
+            
+            transform.rotation = new Quaternion(transform.rotation.x, transform.rotation.y, 0.2f * damageTimer * (float)Math.Sin(damageTimer * 30f) - curSpeedH * 0.75f, transform.rotation.w);
         }
         else if (!exploded)
         {
