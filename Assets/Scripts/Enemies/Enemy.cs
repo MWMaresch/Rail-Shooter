@@ -50,7 +50,7 @@ public class Enemy : MonoBehaviour {
     public virtual void OnTriggerEnter(Collider other)
     {
         //if we get hit, we're dead
-        if (other.gameObject.tag == "PlayerWeapon")
+        if (other.gameObject.tag == "PlayerWeapon" && health > 0)
         {
             TakeDamage((transform.position.x - other.transform.position.x), (transform.position.y - other.transform.position.y));
             Destroy(other.gameObject);

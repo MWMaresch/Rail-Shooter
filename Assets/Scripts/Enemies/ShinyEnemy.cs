@@ -14,6 +14,7 @@ public class ShinyEnemy : Enemy
 
     // Use this for initialization
     public override void Start () {
+        health = 1;
         timer = 0;
 	}
 

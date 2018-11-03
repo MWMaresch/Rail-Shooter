@@ -15,6 +15,7 @@ public class FodderEnemy : Enemy {
     // Use this for initialization
     public override void Start()
     {
+        health = 1;
         player = GameObject.FindGameObjectWithTag("Player");
         direction = speed * (player.transform.position - transform.position).normalized;
         timer = 0;
