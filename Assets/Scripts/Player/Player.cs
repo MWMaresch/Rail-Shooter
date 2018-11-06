@@ -123,10 +123,20 @@ public class Player : MonoBehaviour {
             //move the crosshair
             if (!mouseEnabled)
             {
-                if (Input.GetButton("Sprint"))
-                    crosshair.transform.position += new Vector3(Input.GetAxis("Horizontal") * 1.5f * controlSpeed, Input.GetAxis("Vertical") * 1.5f * controlSpeed);
+                if (!GlobalOptions.InvertYAxis)
+                {
+                    if (Input.GetButton("Sprint"))
+                        crosshair.transform.position += new Vector3(Input.GetAxis("Horizontal") * 1.5f * controlSpeed, Input.GetAxis("Vertical") * 1.5f * controlSpeed);
+                    else
+                        crosshair.transform.position += new Vector3(Input.GetAxis("Horizontal") * 0.75f * controlSpeed, Input.GetAxis("Vertical") * 0.75f * controlSpeed);
+                }
                 else
-                    crosshair.transform.position += new Vector3(Input.GetAxis("Horizontal") * 0.75f * controlSpeed, Input.GetAxis("Vertical") * 0.75f * controlSpeed);
+                {
+                    if (Input.GetButton("Sprint"))
+                        crosshair.transform.position += new Vector3(Input.GetAxis("Horizontal") * 1.5f * controlSpeed, Input.GetAxis("Vertical") * -1.5f * controlSpeed);
+                    else
+                        crosshair.transform.position += new Vector3(Input.GetAxis("Horizontal") * 0.75f * controlSpeed, Input.GetAxis("Vertical") * -0.75f * controlSpeed);
+                }
             }
             crosshair.LookAt(cam.transform);
 
