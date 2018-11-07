@@ -12,6 +12,9 @@ public class WaterAnimation : MonoBehaviour {
     void Start ()
     {
         waterSpeed = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().zSpeed * 0.1f;
+        GetComponent<Renderer>().sortingLayerName = "Background";
+        GetComponent<MeshRenderer>().material.SetInt("_ZWrite", 0);
+        GetComponent<MeshRenderer>().material.renderQueue = 3000;
     }
 	
 	// FixedUpdate is called once every 16ms

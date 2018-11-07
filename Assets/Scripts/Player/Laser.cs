@@ -11,14 +11,16 @@ public class Laser : MonoBehaviour {
     private float lifeTime = 3f;
     private Vector3 direction;
     private bool splashed = false;
+    private GameObject player;
     // Use this for initialization
     void Start ()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         crosshair = GameObject.FindGameObjectWithTag("Crosshair");
         Vector3 crosshairScreenPos = Camera.main.WorldToScreenPoint(crosshair.transform.position);
-        Vector3 aimPos = Camera.main.ScreenToWorldPoint(new Vector3(crosshairScreenPos.x, crosshairScreenPos.y, 50f));
+        Vector3 aimPos = Camera.main.ScreenToWorldPoint(new Vector3(crosshairScreenPos.x, crosshairScreenPos.y, 200f));
         transform.LookAt(aimPos);
-        direction = transform.forward;
+        direction = transform.forward + player.GetComponent<Player>().velocity * 0.5f;
         transform.forward = -Camera.main.transform.forward;
         transform.position += direction *2f;
     }

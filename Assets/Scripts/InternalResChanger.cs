@@ -7,6 +7,6 @@ public class InternalResChanger : MonoBehaviour {
 	void Start () {
         GetComponent<RawImage>().texture.width = GlobalOptions.InternalWidth;
         GetComponent<RawImage>().texture.height = GlobalOptions.InternalHeight;
-        Debug.Log("internal res width is " + GlobalOptions.InternalWidth);
+        //Debug.Log("internal res width is " + GlobalOptions.InternalWidth);
     }
 }

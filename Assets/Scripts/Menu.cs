@@ -5,8 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 using System;
-
-
+using System.Linq;
 
 public class Menu : MonoBehaviour {
 
@@ -18,20 +17,38 @@ public class Menu : MonoBehaviour {
     public Toggle yAxisInversion;
     public Toggle vSyncToggle;
 
-    private Resolution[] resolutions;
+    private List<Resolution> resolutions;
 
-
-    private void Start()
+    private void UpdateWindowResolutions()
     {
-        resolutions = Screen.resolutions;
+        Debug.Log("updating resolutions");
         resDropdown.ClearOptions();
+        resolutions = new List<Resolution>();
+        foreach (Resolution res in Screen.resolutions.Where(resolution => resolution.refreshRate == 60))
+        {
+            //if (resolutions.IndexOf(res) == -1)
+            resolutions.Add(res);
+        }
+        //these resolutions are not supported in exclusive fullscreen mode
+        if (Screen.fullScreenMode != FullScreenMode.ExclusiveFullScreen)
+        {
+            Resolution x1 = new Resolution();
+            x1.width = 480; x1.height = 270;
+            Resolution x2 = new Resolution();
+            x2.width = 960; x2.height = 540;
+            Resolution x3 = new Resolution();
+            x3.width = 1440; x3.height = 810;
+            resolutions.Add(x1);
+            resolutions.Add(x2);
+            resolutions.Add(x3);
+        }
 
         List<string> resOptions = new List<string>();
 
         int curResIndex = 0;
-        for(int res = 0; res < resolutions.Length; res++)
+        for (int res = 0; res < resolutions.Count; res++)
         {
-            string resOption = resolutions[res].width + " x " + resolutions[res].height;
+            string resOption = resolutions[res].width + "x" + resolutions[res].height;
             resOptions.Add(resOption);
 
             if (resolutions[res].width == Screen.currentResolution.width &&
@@ -40,10 +57,21 @@ public class Menu : MonoBehaviour {
                 curResIndex = res;
             }
         }
-        
+        if (Screen.fullScreenMode != FullScreenMode.ExclusiveFullScreen)
+        {
+            resOptions[resOptions.Count - 1] = "x3 (1440x810)";
+            resOptions[resOptions.Count - 2] = "x2 (960x540)";
+            resOptions[resOptions.Count - 3] = "Perfect (480x270)";
+        }
+
         resDropdown.AddOptions(resOptions);
         resDropdown.value = curResIndex;
         resDropdown.RefreshShownValue();
+    }
+
+    private void Start()
+    {
+        UpdateWindowResolutions();
 
         if (GlobalOptions.InternalWidth == 480)
             internalResDropdown.value = 0;
@@ -61,6 +89,11 @@ public class Menu : MonoBehaviour {
         else
             vSyncToggle.isOn = false;
 
+        UpdateScreenModeDropDown();
+    }
+
+    private void UpdateScreenModeDropDown()
+    {
         if (Screen.fullScreen)
         {
             if (Screen.fullScreenMode == FullScreenMode.ExclusiveFullScreen)
@@ -113,6 +146,7 @@ public class Menu : MonoBehaviour {
     {
         Resolution res = resolutions[resIndex];
         Screen.SetResolution(res.width, res.height, Screen.fullScreen);
+        UpdateScreenModeDropDown();
     }
 
     public void SetScreenMode(int mode)
@@ -132,6 +166,7 @@ public class Menu : MonoBehaviour {
             Screen.fullScreenMode = FullScreenMode.Windowed;
             Screen.fullScreen = false;
         }
+        UpdateWindowResolutions();
     }
 
     public void SetInternalResolution(int index)

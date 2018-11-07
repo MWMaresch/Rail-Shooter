@@ -21,9 +21,9 @@ public class Player : MonoBehaviour {
     public GameObject rightCannon;
     public GameObject gameOverObject;
     public float Health { get { return health; } }
+    public Vector3 velocity;
 
     private float health;
-    private float curSpeedH;
     private Vector3 prevPosition;
     private bool mouseEnabled = true;
     private bool shooting = false;
@@ -42,6 +42,7 @@ public class Player : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
+        velocity = new Vector3(0,0,0);
         exploded = false;
         isAlive = true;
         health = 3;
@@ -126,16 +127,16 @@ public class Player : MonoBehaviour {
                 if (!GlobalOptions.InvertYAxis)
                 {
                     if (Input.GetButton("Sprint"))
-                        crosshair.transform.position += new Vector3(Input.GetAxis("Horizontal") * 1.5f * controlSpeed, Input.GetAxis("Vertical") * 1.5f * controlSpeed);
+                        crosshair.transform.position += new Vector3(Input.GetAxis("Horizontal") * 1.5f * controlSpeed, Input.GetAxis("Vertical") * 1.75f * controlSpeed);
                     else
-                        crosshair.transform.position += new Vector3(Input.GetAxis("Horizontal") * 0.75f * controlSpeed, Input.GetAxis("Vertical") * 0.75f * controlSpeed);
+                        crosshair.transform.position += new Vector3(Input.GetAxis("Horizontal") * 0.75f * controlSpeed, Input.GetAxis("Vertical") * 0.85f * controlSpeed);
                 }
                 else
                 {
                     if (Input.GetButton("Sprint"))
-                        crosshair.transform.position += new Vector3(Input.GetAxis("Horizontal") * 1.5f * controlSpeed, Input.GetAxis("Vertical") * -1.5f * controlSpeed);
+                        crosshair.transform.position += new Vector3(Input.GetAxis("Horizontal") * 1.5f * controlSpeed, Input.GetAxis("Vertical") * -1.75f * controlSpeed);
                     else
-                        crosshair.transform.position += new Vector3(Input.GetAxis("Horizontal") * 0.75f * controlSpeed, Input.GetAxis("Vertical") * -0.75f * controlSpeed);
+                        crosshair.transform.position += new Vector3(Input.GetAxis("Horizontal") * 0.75f * controlSpeed, Input.GetAxis("Vertical") * -0.85f * controlSpeed);
                 }
             }
             crosshair.LookAt(cam.transform);
@@ -188,14 +189,15 @@ public class Player : MonoBehaviour {
             else
                 transform.position += 0.2f * targetDirection;
 
-            curSpeedH = transform.position.x - prevPosition.x;
-            
-            transform.rotation = new Quaternion(transform.rotation.x, transform.rotation.y, 0.2f * damageTimer * (float)Math.Sin(damageTimer * 30f) - curSpeedH * 0.75f, transform.rotation.w);
+            velocity.x = transform.position.x - prevPosition.x;
+            velocity.y = transform.position.y - prevPosition.y;
+
+            transform.rotation = new Quaternion(transform.rotation.x, transform.rotation.y, 0.2f * damageTimer * (float)Math.Sin(damageTimer * 30f) - velocity.x * 0.75f, transform.rotation.w);
         }
         else if (!exploded)
         {
-            transform.Rotate(new Vector3(0, 0, 1f), -50f * curSpeedH);
-            transform.position += new Vector3(curSpeedH * 0.5f + UnityEngine.Random.Range(-0.2f, 0.2f), -0.1f + UnityEngine.Random.Range(-0.1f, 0.1f), 0);
+            transform.Rotate(new Vector3(0, 0, 1f), -50f * velocity.x);
+            transform.position += new Vector3(velocity.x * 0.5f + UnityEngine.Random.Range(-0.2f, 0.2f), -0.1f + UnityEngine.Random.Range(-0.1f, 0.1f), 0);
             damageTimer += 1;
             if (damageTimer % 10 == 0)
             {

@@ -12,14 +12,11 @@ public class ShinyEnemy : Enemy
 
     private float timer;
 
-    private bool colorToggle;
-
     // Use this for initialization
     public override void Start () {
         health = 1;
         timer = 0;
         GetComponent<SpriteRenderer>().color = Color.magenta;
-        colorToggle = true;
 	}
 
     public override void FixedUpdate() {
