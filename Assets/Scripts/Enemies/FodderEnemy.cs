@@ -24,7 +24,7 @@ public class FodderEnemy : Enemy {
 
     public override void FixedUpdate()
     {
-        timer += Time.deltaTime;
+        timer += Time.fixedDeltaTime;
         transform.position += direction + new Vector3(Mathf.Sin(timer * 4f) * speed, Mathf.Cos(timer * 4f) * speed, 0);
 
     }

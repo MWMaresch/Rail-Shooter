@@ -20,7 +20,7 @@ public class ShinyEnemy : Enemy
 	}
 
     public override void FixedUpdate() {
-        timer += Time.deltaTime;
+        timer += Time.fixedDeltaTime;
         transform.position += new Vector3(speedX, Mathf.Sin(timer * 5f) * speedY, -speedZ);
         GetComponent<SpriteRenderer>().color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
         /*if (colorToggle)

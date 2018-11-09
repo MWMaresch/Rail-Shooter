@@ -1866,7 +1866,7 @@ MonoBehaviour:
     position: {x: 20, y: 5, z: 70}
   - gameObj: {fileID: 1261147336371548, guid: 765cc6c407403c6409d0568c26890c15, type: 2}
     spawnTime: 8
-    position: {x: -50, y: 4, z: 70}
+    position: {x: -50, y: 4, z: 50}
   - gameObj: {fileID: 1815403575242682, guid: b990e44da7caee8429fd96ee171f746c, type: 2}
     spawnTime: 15
     position: {x: 0, y: 5, z: 70}
@@ -1903,6 +1903,36 @@ MonoBehaviour:
   - gameObj: {fileID: 1825798332044464, guid: 78ee162cd0f75514692f9636384e71fd, type: 2}
     spawnTime: 20
     position: {x: -50, y: 4, z: 100}
+  - gameObj: {fileID: 1261147336371548, guid: 765cc6c407403c6409d0568c26890c15, type: 2}
+    spawnTime: 20
+    position: {x: -50, y: 4, z: 50}
+  - gameObj: {fileID: 1702546018770710, guid: 9dc3ebfbe23aade40a66276fd0e15a7d, type: 2}
+    spawnTime: 25
+    position: {x: 0, y: 10, z: 100}
+  - gameObj: {fileID: 1702546018770710, guid: 9dc3ebfbe23aade40a66276fd0e15a7d, type: 2}
+    spawnTime: 30
+    position: {x: -30, y: 10, z: 100}
+  - gameObj: {fileID: 1702546018770710, guid: 9dc3ebfbe23aade40a66276fd0e15a7d, type: 2}
+    spawnTime: 30
+    position: {x: -20, y: 4, z: 100}
+  - gameObj: {fileID: 1702546018770710, guid: 9dc3ebfbe23aade40a66276fd0e15a7d, type: 2}
+    spawnTime: 30
+    position: {x: -10, y: 10, z: 100}
+  - gameObj: {fileID: 1702546018770710, guid: 9dc3ebfbe23aade40a66276fd0e15a7d, type: 2}
+    spawnTime: 31
+    position: {x: -0, y: 4, z: 100}
+  - gameObj: {fileID: 1702546018770710, guid: 9dc3ebfbe23aade40a66276fd0e15a7d, type: 2}
+    spawnTime: 31
+    position: {x: 10, y: 10, z: 100}
+  - gameObj: {fileID: 1702546018770710, guid: 9dc3ebfbe23aade40a66276fd0e15a7d, type: 2}
+    spawnTime: 31
+    position: {x: 20, y: 4, z: 100}
+  - gameObj: {fileID: 1702546018770710, guid: 9dc3ebfbe23aade40a66276fd0e15a7d, type: 2}
+    spawnTime: 32
+    position: {x: 30, y: 10, z: 100}
+  - gameObj: {fileID: 1702546018770710, guid: 9dc3ebfbe23aade40a66276fd0e15a7d, type: 2}
+    spawnTime: 32
+    position: {x: 0, y: 15, z: 100}
   loopSpawns: 1
 --- !u!4 &1871511299
 Transform:
