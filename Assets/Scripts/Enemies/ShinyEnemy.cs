@@ -13,7 +13,10 @@ public class ShinyEnemy : Enemy
     private float timer;
 
     // Use this for initialization
-    public override void Start () {
+    public override void Start ()
+    {
+        pointsForDestroy = 200;
+        pointsForHit = 0;
         health = 1;
         timer = 0;
         GetComponent<SpriteRenderer>().color = Color.magenta;

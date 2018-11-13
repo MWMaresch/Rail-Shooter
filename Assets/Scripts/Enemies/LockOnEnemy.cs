@@ -21,6 +21,8 @@ public class LockOnEnemy : Enemy {
     // Use this for initialization
     public override void Start ()
     {
+        pointsForDestroy = 50;
+        pointsForHit = 2;
         player = GameObject.FindGameObjectWithTag("Player");
         water = GameObject.FindGameObjectWithTag("Water");
         direction = new Vector3();

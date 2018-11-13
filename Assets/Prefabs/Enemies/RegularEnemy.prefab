@@ -181,8 +181,8 @@ MonoBehaviour:
   maxHealth: 3
   minShootDistance: 30
   rammingDistance: 5
-  speed: 0.15
-  shootDelay: 0.8
+  speed: 0.2
+  shootDelay: 0.2
   projectile: {fileID: 1217035404442762, guid: 590007bde8b0d854a88eb8d1281c9aad, type: 2}
   muzzleFlash: {fileID: 1165137862334790, guid: ec96877d5d11e6644a03b4eba7b8a011,
     type: 2}

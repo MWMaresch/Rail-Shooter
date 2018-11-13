@@ -18,7 +18,10 @@ public class RegularEnemy : Enemy {
     public GameObject muzzleFlash;
 
 	// Use this for initialization
-	public override void Start () {
+	public override void Start ()
+    {
+        pointsForDestroy = 60;
+        pointsForHit = 5;
         player = GameObject.FindWithTag("Player");
         shootTimer = shootDelay;
         reachedPlayer = false;

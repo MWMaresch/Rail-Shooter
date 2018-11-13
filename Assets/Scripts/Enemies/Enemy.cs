@@ -13,6 +13,8 @@ public class Enemy : MonoBehaviour {
     public GameObject deathExplosion;
     public int maxHealth;
 
+    protected int pointsForHit;
+    protected int pointsForDestroy;
     protected int health;
     protected float hitColorTimer;
 
@@ -38,26 +40,27 @@ public class Enemy : MonoBehaviour {
 
     public virtual void Explode()
     {
+        GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>().AddScore(pointsForDestroy);
         Instantiate(deathExplosion, transform.position, transform.rotation);
         Destroy(gameObject);
     }
 
     public virtual void TakeDamage(float knockbackX, float knockbackY)
     {
+        GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>().AddScore(pointsForHit);
         Instantiate(smallExplosion, transform.position, transform.rotation);
+        hitColorTimer = 0.5f;
     }
 
     public virtual void OnTriggerEnter(Collider other)
     {
-        //if we get hit, we're dead
         if (other.gameObject.tag == "PlayerWeapon" && health > 0)
         {
-            TakeDamage((transform.position.x - other.transform.position.x), (transform.position.y - other.transform.position.y));
             Destroy(other.gameObject);
             health--;
-            // GetComponent<Renderer>().material.color = Color.red;
-            hitColorTimer = 0.5f;
-            if (health <= 0)
+            if (health > 0)
+                TakeDamage((transform.position.x - other.transform.position.x), (transform.position.y - other.transform.position.y));
+            else
                 Explode();
         }
     }

@@ -250,6 +250,7 @@ public class Player : MonoBehaviour {
             }
             else if (other.gameObject.tag == "TwinPowerup")
             {
+                GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>().AddScore(100);
                 other.GetComponent<Renderer>().enabled = false;
                 other.GetComponent<AudioSource>().Play();
                 //Destroy(other.gameObject);

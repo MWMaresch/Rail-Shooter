@@ -11,6 +11,7 @@ TagManager:
   - Water
   - TwinPowerup
   - Canvas
+  - ScoreManager
   layers:
   - Default
   - TransparentFX
