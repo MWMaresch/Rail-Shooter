@@ -48,7 +48,7 @@ public class Menu : MonoBehaviour {
         int curResIndex = 0;
         for (int res = 0; res < resolutions.Count; res++)
         {
-            string resOption = resolutions[res].width + "x" + resolutions[res].height;
+            string resOption = resolutions[res].width + "X" + resolutions[res].height;
             resOptions.Add(resOption);
 
             if (resolutions[res].width == Screen.currentResolution.width &&
@@ -59,9 +59,9 @@ public class Menu : MonoBehaviour {
         }
         if (Screen.fullScreenMode != FullScreenMode.ExclusiveFullScreen)
         {
-            resOptions[resOptions.Count - 1] = "x3 (1440x810)";
-            resOptions[resOptions.Count - 2] = "x2 (960x540)";
-            resOptions[resOptions.Count - 3] = "Perfect (480x270)";
+            resOptions[resOptions.Count - 1] = "X3 (1440X810)";
+            resOptions[resOptions.Count - 2] = "X2 (960X540)";
+            resOptions[resOptions.Count - 3] = "PERFECT (480X270)";
         }
 
         resDropdown.AddOptions(resOptions);

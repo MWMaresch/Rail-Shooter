@@ -758,8 +758,8 @@ MonoBehaviour:
     m_RichText: 0
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
-    m_LineSpacing: 0.15
-  m_Text: Invert Y Axis Control
+    m_LineSpacing: 1
+  m_Text: INVERT Y AXIS CONTROL
 --- !u!222 &217276143
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -833,8 +833,8 @@ MonoBehaviour:
     m_RichText: 0
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
-    m_LineSpacing: 0.17
-  m_Text: Target Refresh Rate
+    m_LineSpacing: 1
+  m_Text: TARGET REFRESH RATE
 --- !u!222 &224554063
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1012,8 +1012,8 @@ MonoBehaviour:
     m_RichText: 0
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
-    m_LineSpacing: 0.17
-  m_Text: Window Resolution
+    m_LineSpacing: 1
+  m_Text: WINDOW RESOLUTION
 --- !u!222 &235205167
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1661,7 +1661,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -7.5, y: 33.6}
+  m_AnchoredPosition: {x: -7.5, y: -0.19999981}
   m_SizeDelta: {x: -35, y: -29.999996}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &452866436
@@ -1695,8 +1695,8 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
-    m_LineSpacing: 0.17
-  m_Text: Exclusive Fullscreen
+    m_LineSpacing: 1
+  m_Text: EXCLUSIVE FULLSCREEN
 --- !u!222 &452866437
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2459,8 +2459,8 @@ MonoBehaviour:
     m_RichText: 0
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
-    m_LineSpacing: 0.17
-  m_Text: Screen Mode
+    m_LineSpacing: 1
+  m_Text: SCREEN MODE
 --- !u!222 &708001471
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2552,11 +2552,11 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: Perfect (480x270)
+    - m_Text: PERFECT (480X270)
       m_Image: {fileID: 0}
-    - m_Text: x2 (960x540)
+    - m_Text: X2 (960X540)
       m_Image: {fileID: 0}
-    - m_Text: x3 (1440x810)
+    - m_Text: X3 (1440X810)
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3769,7 +3769,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Back
+  m_Text: BACK
 --- !u!222 &1208522267
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3843,8 +3843,8 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
-    m_LineSpacing: 0.15
-  m_Text: Perfect (480x270)
+    m_LineSpacing: 1
+  m_Text: PERFECT (480X270)
 --- !u!222 &1208780320
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4551,8 +4551,8 @@ MonoBehaviour:
     m_RichText: 0
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
-    m_LineSpacing: 0.17
-  m_Text: Internal Resolution
+    m_LineSpacing: 1
+  m_Text: INTERNAL RESOLUTION
 --- !u!222 &1320768555
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4627,7 +4627,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 0.17
-  m_Text: V-Sync
+  m_Text: V-SYNC
 --- !u!222 &1329573056
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5221,7 +5221,7 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
-    m_LineSpacing: 0.15
+    m_LineSpacing: 1
   m_Text: 1x (480x270)
 --- !u!222 &1618818975
 CanvasRenderer:
@@ -5555,11 +5555,11 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: Exclusive Fullscreen
+    - m_Text: EXCLUSIVE FULLSCREEN
       m_Image: {fileID: 0}
-    - m_Text: Fullscreen Window
+    - m_Text: FULLSCREEN WINDOW
       m_Image: {fileID: 0}
-    - m_Text: Windowed
+    - m_Text: WINDOWED
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
