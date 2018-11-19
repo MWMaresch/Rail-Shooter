@@ -57,7 +57,7 @@ public class Menu : MonoBehaviour {
                 curResIndex = res;
             }
         }
-        if (Screen.fullScreenMode != FullScreenMode.ExclusiveFullScreen)
+        if (Screen.fullScreenMode == FullScreenMode.Windowed && Screen.fullScreen == false)
         {
             resOptions[resOptions.Count - 1] = "X3 (1440X810)";
             resOptions[resOptions.Count - 2] = "X2 (960X540)";
@@ -186,6 +186,16 @@ public class Menu : MonoBehaviour {
             GlobalOptions.InternalWidth = 1440;
             GlobalOptions.InternalHeight = 810;
         }
+
+        /*InternalResChanger canv = GameObject.FindGameObjectWithTag("Canvas").GetComponent<InternalResChanger>();
+        if (canv != null)
+        {
+            canv.UpdateResolution();
+        }
+        If we change the internal resolution mid-game, Unity gives us this error:
+        Setting height of already created render texture is not supported!
+        maybe we can recreate it entirely during runtime..?
+        */
     }
 
     public void SetYAxisInversion(bool val)
