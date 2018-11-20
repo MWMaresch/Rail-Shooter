@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public enum LaserType { Single, Twin, somethingelse };
 
@@ -20,6 +17,9 @@ public class Player : MonoBehaviour {
     public GameObject leftCannon;
     public GameObject rightCannon;
     public GameObject gameOverObject;
+    public GameObject shieldHUD;
+    public GameObject hp2HUD;
+    public GameObject hp1HUD;
     public float Health { get { return health; } }
     public Vector3 velocity;
 
@@ -30,6 +30,7 @@ public class Player : MonoBehaviour {
     private bool autoShooting = false;
     private float lastShootTime;
     private float damageTimer;
+    private float shieldTimer;
     private Renderer muzzleFlashRend;
     private Vector3 cameraOrigPos;
     private Vector3 targetDirection;
@@ -42,10 +43,13 @@ public class Player : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
+        shieldHUD.SetActive(true);
+        hp2HUD.SetActive(true);
+        hp1HUD.SetActive(false);
         velocity = new Vector3(0,0,0);
         exploded = false;
         isAlive = true;
-        health = 3;
+        health = 2;
         laserType = LaserType.Single;
         cameraOrigPos = Camera.main.transform.position;
         lastShootTime = 999f;
@@ -96,9 +100,15 @@ public class Player : MonoBehaviour {
     void FixedUpdate()
     {
         //timer for muzzle flash
-        lastShootTime += Time.fixedDeltaTime;
-        if (lastShootTime > 0.06f)
+        if (muzzleFlashRend.enabled && lastShootTime > 0.06f)
             muzzleFlashRend.enabled = false;
+        else
+            lastShootTime += Time.fixedDeltaTime;
+
+        if (!shieldHUD.activeSelf && shieldTimer <= 0)
+            shieldHUD.SetActive(true);
+        else
+            shieldTimer -= Time.fixedDeltaTime;
 
         if (isAlive)
         {
@@ -127,16 +137,16 @@ public class Player : MonoBehaviour {
                 if (!GlobalOptions.InvertYAxis)
                 {
                     if (Input.GetButton("Sprint"))
-                        crosshair.transform.position += new Vector3(Input.GetAxis("Horizontal") * 1.5f * controlSpeed, Input.GetAxis("Vertical") * 1.75f * controlSpeed);
+                        crosshair.transform.position += new Vector3(Input.GetAxis("Horizontal") * 1.75f * controlSpeed, Input.GetAxis("Vertical") * 1.75f * controlSpeed);
                     else
-                        crosshair.transform.position += new Vector3(Input.GetAxis("Horizontal") * 0.75f * controlSpeed, Input.GetAxis("Vertical") * 0.85f * controlSpeed);
+                        crosshair.transform.position += new Vector3(Input.GetAxis("Horizontal") * 0.85f * controlSpeed, Input.GetAxis("Vertical") * 0.85f * controlSpeed);
                 }
                 else
                 {
                     if (Input.GetButton("Sprint"))
-                        crosshair.transform.position += new Vector3(Input.GetAxis("Horizontal") * 1.5f * controlSpeed, Input.GetAxis("Vertical") * -1.75f * controlSpeed);
+                        crosshair.transform.position += new Vector3(Input.GetAxis("Horizontal") * 1.75f * controlSpeed, Input.GetAxis("Vertical") * -1.75f * controlSpeed);
                     else
-                        crosshair.transform.position += new Vector3(Input.GetAxis("Horizontal") * 0.75f * controlSpeed, Input.GetAxis("Vertical") * -0.85f * controlSpeed);
+                        crosshair.transform.position += new Vector3(Input.GetAxis("Horizontal") * 0.85f * controlSpeed, Input.GetAxis("Vertical") * -0.85f * controlSpeed);
                 }
             }
             crosshair.LookAt(cam.transform);
@@ -211,10 +221,23 @@ public class Player : MonoBehaviour {
 
     public void TakeDamage(float damage)
     {
+        shieldTimer = 7f;
         //indicator that we're hit
-        health -= damage;
+        if (!shieldHUD.activeSelf)
+        {
+            health -= damage;
+            if (health == 1)
+            {
+                hp1HUD.SetActive(true);
+                hp2HUD.SetActive(false);
+            }
+        }
+        else
+            shieldHUD.SetActive(false);
+
         if (health <= 0)
         {
+            hp1HUD.SetActive(false);
             GetComponent<SpriteRenderer>().color = Color.red;
             isAlive = false;
             damageTimer = 0f;
