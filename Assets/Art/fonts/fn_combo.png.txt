@@ -1,0 +1,1 @@
+fn_combo_01.png.png 0 0, fn_combo_02.png.png 36 0, fn_combo_03.png.png 69 0, fn_combo_04.png.png 97 0, fn_combo_05.png.png 0 41, fn_combo_06.png.png 35 41, fn_combo_07.png.png 93 43, fn_combo_08.png.png 0 55, fn_combo_09.png.png 35 82, fn_combo_10.png.png 64 82, fn_combo_11.png.png 93 86, fn_combo_12.png.png 0 95.
