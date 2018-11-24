@@ -15,27 +15,35 @@ public class Enemy : MonoBehaviour {
     protected int pointsForDestroy;
     protected int health;
     protected float hitColorTimer;
+    protected Color col;
 
+    private GameObject water;
     // Use this for initialization
-    public virtual void Start () {
+    public virtual void Start ()
+    {
+        col = Color.white;
+        water = GameObject.FindGameObjectWithTag("Water");
         health = maxHealth;
         hitColorTimer = 0f;
     }
 
     public virtual void FixedUpdate()
     {
+        if (transform.position.y <= water.transform.position.y)
+            transform.position = new Vector3(transform.position.x, water.transform.position.y, transform.position.z);
+
         if (hitColorTimer > 0f)
         {
             hitColorTimer -= Time.fixedDeltaTime;
             if (GetComponent<Renderer>().material.color == Color.red)
-                GetComponent<Renderer>().material.color = Color.white;
+                GetComponent<Renderer>().material.color = col;
             else
-                GetComponent<Renderer>().material.color = Color.red;
+                GetComponent<Renderer>().material.color = col;
         }
         else
-            GetComponent<Renderer>().material.color = Color.white;
+            GetComponent<Renderer>().material.color = col;
     }
-
+    
     public virtual void Explode()
     {
         GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>().AddScore(pointsForDestroy);

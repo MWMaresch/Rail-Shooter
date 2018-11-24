@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4366757, g: 0.48427194, b: 0.5645252, a: 1}
+  m_IndirectSpecularColor: {r: 0.43667546, g: 0.48427135, b: 0.5645225, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5628,6 +5628,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   randXScale: 0.1
   randYScale: 0.2
+  minimumSize: 0.3
   waveL: {fileID: 1063481295}
   waveR: {fileID: 48527611}
 --- !u!4 &1379501205
@@ -6781,7 +6782,7 @@ GameObject:
   - component: {fileID: 1626884594}
   - component: {fileID: 1626884597}
   - component: {fileID: 1626884598}
-  - component: {fileID: 1626884595}
+  - component: {fileID: 1626884596}
   m_Layer: 0
   m_Name: Player Ship
   m_TagString: Player
@@ -6824,7 +6825,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -23
-  m_Sprite: {fileID: 21300000, guid: fe47c7255c4b11a42a56919e45cce777, type: 3}
+  m_Sprite: {fileID: 21300000, guid: aeadffbf8b7864b448c5ccd7045f8a6c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -6893,7 +6894,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.5, y: 0.9, z: 0.01}
   m_Center: {x: 0, y: -0.2, z: 0}
---- !u!95 &1626884595
+--- !u!95 &1626884596
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -6902,7 +6903,7 @@ Animator:
   m_GameObject: {fileID: 1626884590}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 680b8aeab191c344d83fd350192b8df7, type: 2}
+  m_Controller: {fileID: 9100000, guid: 4e227ac0d12ab1e43bf9fd07cc1ff678, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -7988,9 +7989,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawns:
-  - gameObj: {fileID: 1825798332044464, guid: 78ee162cd0f75514692f9636384e71fd, type: 2}
+  - gameObj: {fileID: 1702546018770710, guid: 9dc3ebfbe23aade40a66276fd0e15a7d, type: 2}
     spawnTime: 1
-    position: {x: 5, y: 20, z: 70}
+    position: {x: 20, y: 20, z: -20}
   - gameObj: {fileID: 1825798332044464, guid: 78ee162cd0f75514692f9636384e71fd, type: 2}
     spawnTime: 2
     position: {x: 50, y: 5, z: 70}
@@ -8053,31 +8054,31 @@ MonoBehaviour:
     position: {x: -50, y: 4, z: 50}
   - gameObj: {fileID: 1702546018770710, guid: 9dc3ebfbe23aade40a66276fd0e15a7d, type: 2}
     spawnTime: 25
-    position: {x: 0, y: 10, z: 100}
+    position: {x: 0, y: 100, z: 0}
   - gameObj: {fileID: 1702546018770710, guid: 9dc3ebfbe23aade40a66276fd0e15a7d, type: 2}
     spawnTime: 30
-    position: {x: -30, y: 10, z: 100}
+    position: {x: -30, y: 10, z: 0}
   - gameObj: {fileID: 1702546018770710, guid: 9dc3ebfbe23aade40a66276fd0e15a7d, type: 2}
     spawnTime: 30
-    position: {x: -20, y: 4, z: 100}
+    position: {x: -20, y: 4, z: 0}
   - gameObj: {fileID: 1702546018770710, guid: 9dc3ebfbe23aade40a66276fd0e15a7d, type: 2}
     spawnTime: 30
-    position: {x: -10, y: 10, z: 100}
+    position: {x: -20, y: 10, z: 0}
   - gameObj: {fileID: 1702546018770710, guid: 9dc3ebfbe23aade40a66276fd0e15a7d, type: 2}
     spawnTime: 31
-    position: {x: -0, y: 4, z: 100}
+    position: {x: -0, y: 40, z: 0}
   - gameObj: {fileID: 1702546018770710, guid: 9dc3ebfbe23aade40a66276fd0e15a7d, type: 2}
     spawnTime: 31
-    position: {x: 10, y: 10, z: 100}
+    position: {x: 20, y: 10, z: 0}
   - gameObj: {fileID: 1702546018770710, guid: 9dc3ebfbe23aade40a66276fd0e15a7d, type: 2}
     spawnTime: 31
-    position: {x: 20, y: 4, z: 100}
+    position: {x: 20, y: 4, z: 0}
   - gameObj: {fileID: 1702546018770710, guid: 9dc3ebfbe23aade40a66276fd0e15a7d, type: 2}
     spawnTime: 32
-    position: {x: 30, y: 10, z: 100}
+    position: {x: 30, y: 10, z: 0}
   - gameObj: {fileID: 1702546018770710, guid: 9dc3ebfbe23aade40a66276fd0e15a7d, type: 2}
     spawnTime: 32
-    position: {x: 0, y: 15, z: 100}
+    position: {x: 0, y: 30, z: 0}
   loopSpawns: 1
 --- !u!4 &1871511299
 Transform:
@@ -8593,7 +8594,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2048484362}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.069, z: 0}
+  m_LocalPosition: {x: 0, y: 0.065, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1626884592}

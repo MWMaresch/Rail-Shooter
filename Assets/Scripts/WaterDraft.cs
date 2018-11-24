@@ -4,6 +4,7 @@ public class WaterDraft : MonoBehaviour {
 
     public float randXScale;
     public float randYScale;
+    public float minimumSize;
     public GameObject waveL;
     public GameObject waveR;
 
@@ -23,8 +24,12 @@ public class WaterDraft : MonoBehaviour {
         waveL.GetComponent<Renderer>().enabled = renderToggle;
         waveR.GetComponent<Renderer>().enabled = renderToggle;
         if (player.transform.position.y < -1.7f)
-            distScale = (-player.transform.position.y - 1.7f);
+        {
+            distScale = Mathf.Max(minimumSize, (-player.transform.position.y - 1.7f));
             transform.position = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
-            transform.localScale = new Vector3(distScale * 1 + Random.Range(-randXScale, randXScale), distScale * (1 + Random.Range(-randYScale, randYScale)), 1);
+            transform.localScale = new Vector3(distScale + Random.Range(-randXScale, randXScale), distScale * (1 + Random.Range(-randYScale, randYScale)), 1);
+        }
+        else
+            transform.localScale = Vector3.zero;
     }
 }

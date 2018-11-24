@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 82183752508072084}
   - component: {fileID: 114089479837589842}
   m_Layer: 0
-  m_Name: RegularEnemy
+  m_Name: CrashingEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -178,14 +178,9 @@ MonoBehaviour:
     type: 2}
   deathExplosion: {fileID: 1289732783544488, guid: 7758c36fa5720af4083fed128b8e154c,
     type: 2}
-  maxHealth: 3
-  minShootDistance: 30
+  maxHealth: 2
   rammingDistance: 5
-  speed: 0.2
-  shootDelay: 0.2
-  projectile: {fileID: 1217035404442762, guid: 590007bde8b0d854a88eb8d1281c9aad, type: 2}
-  muzzleFlash: {fileID: 1165137862334790, guid: ec96877d5d11e6644a03b4eba7b8a011,
-    type: 2}
+  speed: 0.5
 --- !u!212 &212460526012623260
 SpriteRenderer:
   m_ObjectHideFlags: 1

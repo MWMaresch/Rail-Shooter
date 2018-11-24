@@ -4,28 +4,65 @@ public class FodderEnemy : Enemy {
 
     private GameObject player;
     private Vector3 direction;
+    private float shootTimer;
+    private bool reachedPlayer;
 
-    public float speed;    
-    public GameObject drop;
-
-    private float timer;
+    public float minShootDistance;
+    public float rammingDistance;
+    public float speed;
+    public float shootDelay;
+    public GameObject projectile;
+    public GameObject muzzleFlash;
 
     // Use this for initialization
     public override void Start()
     {
-        pointsForDestroy = 50;
-        pointsForHit = 0;
-        health = 1;
-        player = GameObject.FindGameObjectWithTag("Player");
-        direction = speed * (player.transform.position - transform.position).normalized;
-        timer = 0;
-        GetComponent<SpriteRenderer>().color = Color.green;
+        base.Start();
+        pointsForDestroy = 60;
+        pointsForHit = 5;
+        player = GameObject.FindWithTag("Player");
+        shootTimer = shootDelay;
+        reachedPlayer = false;
+        col = Color.green;
     }
 
+    // FixedUpdate is called once every 16ms
     public override void FixedUpdate()
     {
-        timer += Time.fixedDeltaTime;
-        transform.position += direction + new Vector3(Mathf.Sin(timer * 4f) * speed, Mathf.Cos(timer * 4f) * speed, 0);
+        base.FixedUpdate();
+        if (!reachedPlayer)
+        {
 
+            //move towards the player, but not if we're too close already
+            float distance = Vector3.Distance(transform.position, player.transform.position);
+            if (distance > rammingDistance)
+            {
+                direction = (player.transform.position - transform.position).normalized;
+                transform.position += direction * speed;
+
+                //every set amount of time, shoot at the player
+                shootTimer -= Time.fixedDeltaTime;
+                if (shootTimer <= 0 && distance < minShootDistance)
+                {
+                    Instantiate(muzzleFlash, new Vector3(transform.position.x, transform.position.y - 0.2f, transform.position.z - 0.2f), transform.rotation);
+                    projectile.GetComponent<EnemyLaser>().targetPosition = player.transform.position;
+                    Instantiate(projectile, transform.position, transform.rotation);
+                    shootTimer = shootDelay + Random.Range(-0.2f, 0.2f);
+                    GetComponent<AudioSource>().Play();
+                }
+            }
+            else
+            {
+                reachedPlayer = true;
+            }
+        }
+        else
+        {
+            transform.position += direction * speed;
+            if (transform.position.z < Camera.main.transform.position.z)
+            {
+                Destroy(gameObject);
+            }
+        }
     }
 }

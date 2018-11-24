@@ -10,46 +10,43 @@ public class LockOnEnemy : Enemy {
     public GameObject muzzleFlash;
 
     private bool isShooting;
+    private bool reachedShootDistance;
     private float waitTimer;
     private float shootTimer;
     private Vector3 direction;
+    private Vector3 shootPosition;
+    private Vector3 pPos;
     private GameObject player;
-    private GameObject water;
 
     // Use this for initialization
     public override void Start ()
     {
+        base.Start();
         pointsForDestroy = 50;
         pointsForHit = 2;
         player = GameObject.FindGameObjectWithTag("Player");
-        water = GameObject.FindGameObjectWithTag("Water");
-        direction = new Vector3();
+        pPos = player.transform.position;
+        shootPosition = new Vector3(pPos.x, pPos.y, pPos.z + shootDistance);
+        direction = (shootPosition - transform.position).normalized;
         waitTimer = 0;
         shootTimer = 0;
         isShooting = false;
-        base.Start();
+        col = Color.magenta;
+        reachedShootDistance = false;
     }
 
 
     public override void FixedUpdate()
     {
-        if (hitColorTimer > 0f)
+        base.FixedUpdate();
+        pPos = player.transform.position;
+
+        if (!reachedShootDistance)
         {
-            hitColorTimer -= Time.fixedDeltaTime;
-            if (GetComponent<Renderer>().material.color == Color.red)
-                GetComponent<Renderer>().material.color = Color.magenta;
+            if (Vector3.Distance(transform.position, shootPosition) > speed * 2)
+                transform.position += direction * speed;
             else
-                GetComponent<Renderer>().material.color = Color.red;
-        }
-        else
-            GetComponent<Renderer>().material.color = Color.magenta;
-
-
-        if (transform.position.z > shootDistance)
-        {
-
-            direction = (player.transform.position - transform.position).normalized;
-            transform.position += direction * speed;
+                reachedShootDistance = true;
         }
         else
         {
@@ -58,7 +55,7 @@ public class LockOnEnemy : Enemy {
             {
                 isShooting = !isShooting;
                 waitTimer = waitTime;
-                direction = (player.transform.position - transform.position).normalized;
+                direction = (pPos - transform.position).normalized;
             }
 
             if (isShooting)
@@ -66,21 +63,35 @@ public class LockOnEnemy : Enemy {
                 shootTimer -= Time.fixedDeltaTime;
                 if (shootTimer <= 0f)
                 {
-                    Instantiate(muzzleFlash, new Vector3(transform.position.x, transform.position.y - 0.2f, transform.position.z - 0.2f), transform.rotation);
-                    Instantiate(projectile, transform.position, transform.rotation);
-                    shootTimer = shootDelay + Random.Range(-0.2f, 0.2f);
-                    GetComponent<AudioSource>().Play();
+                    FireFiveShots();
                 }
             }
             else
             {
                 transform.position += new Vector3(direction.x * speed, direction.y * speed, 0);
-                if (transform.position.y <= water.transform.position.y)
-                {
-                    direction = new Vector3(direction.x, Mathf.Abs(direction.y), 0);
-                }
             }
         }
+    }
+
+    private void FireFiveShots()
+    {
+        Instantiate(muzzleFlash, new Vector3(transform.position.x, transform.position.y - 0.2f, transform.position.z - 0.2f), transform.rotation);
+
+        projectile.GetComponent<EnemyLaser>().targetPosition = pPos;
+        Instantiate(projectile, transform.position, transform.rotation);
+        projectile.GetComponent<EnemyLaser>().targetPosition = pPos + new Vector3(1,0,0);
+        Instantiate(projectile, transform.position, transform.rotation);
+        projectile.GetComponent<EnemyLaser>().targetPosition = pPos + new Vector3(-1, 0, 0);
+        Instantiate(projectile, transform.position, transform.rotation);
+        projectile.GetComponent<EnemyLaser>().targetPosition = pPos + new Vector3(0, 1, 0);
+        Instantiate(projectile, transform.position, transform.rotation);
+        projectile.GetComponent<EnemyLaser>().targetPosition = pPos + new Vector3(0, -1, 0);
+        Instantiate(projectile, transform.position, transform.rotation);
+
+
+        shootTimer = shootDelay + Random.Range(-0.2f, 0.2f);
+        GetComponent<AudioSource>().Play();
+
     }
 
 

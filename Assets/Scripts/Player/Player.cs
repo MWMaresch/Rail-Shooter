@@ -37,12 +37,14 @@ public class Player : MonoBehaviour {
     private LaserType laserType;
     private bool isAlive;
     private bool exploded;
+    private Animator animator;
 
     private float screenSnapFraction;
 
     // Use this for initialization
     void Start ()
     {
+        animator = GetComponent<Animator>();
         shieldHUD.SetActive(true);
         hp2HUD.SetActive(true);
         hp1HUD.SetActive(false);
@@ -99,6 +101,7 @@ public class Player : MonoBehaviour {
     // FixedUpdate is called once every 16ms
     void FixedUpdate()
     {
+
         //timer for muzzle flash
         if (muzzleFlashRend.enabled && lastShootTime > 0.06f)
             muzzleFlashRend.enabled = false;
@@ -187,11 +190,11 @@ public class Player : MonoBehaviour {
             }
 
 
+            prevPosition = transform.position;
             if (transform.position.y < -2.5f)
                 transform.position = new Vector3(transform.position.x, -2.5f, transform.position.z);
 
             //move the ship, and rotate it depending on how much it moved
-            prevPosition = transform.position;
             targetDirection = new Vector3(crosshair.transform.position.x - transform.position.x, crosshair.transform.position.y - 0.4f - transform.position.y);
 
             if (targetDirection.magnitude * 0.2f >= maxSpeed)
@@ -202,7 +205,13 @@ public class Player : MonoBehaviour {
             velocity.x = transform.position.x - prevPosition.x;
             velocity.y = transform.position.y - prevPosition.y;
 
-            transform.rotation = new Quaternion(transform.rotation.x, transform.rotation.y, 0.2f * damageTimer * (float)Math.Sin(damageTimer * 30f) - velocity.x * 0.75f, transform.rotation.w);
+            transform.rotation = new Quaternion(transform.rotation.x, transform.rotation.y, 0.2f * damageTimer * (float)Math.Sin(damageTimer * 30f) - velocity.x * 0.5f, transform.rotation.w);
+            animator.SetFloat("velY", velocity.y);
+            animator.SetFloat("velX", Mathf.Abs(velocity.x));
+            if (velocity.x > 0)
+                GetComponent<SpriteRenderer>().flipX = true;
+            else
+                GetComponent<SpriteRenderer>().flipX = false;
         }
         else if (!exploded)
         {
@@ -213,9 +222,6 @@ public class Player : MonoBehaviour {
             {
                 Instantiate(smallImpact, transform.position, transform.rotation);
             }
-        }
-        else
-        {
         }
     }
 

@@ -70,7 +70,7 @@ MonoBehaviour:
     type: 2}
   deathExplosion: {fileID: 1289732783544488, guid: 7758c36fa5720af4083fed128b8e154c,
     type: 2}
-  maxHealth: 1
+  maxHealth: 2
   speedX: 0.15
   speedY: 0.4
   speedZ: 0
