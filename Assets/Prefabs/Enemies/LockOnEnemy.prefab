@@ -168,8 +168,8 @@ MonoBehaviour:
   deathExplosion: {fileID: 1289732783544488, guid: 7758c36fa5720af4083fed128b8e154c,
     type: 2}
   maxHealth: 2
-  waitTime: 1
-  shootDelay: 0.4
+  waitTime: 0.5
+  shootDelay: 0.5
   shootDistance: 40
   speed: 0.35
   projectile: {fileID: 1217035404442762, guid: 590007bde8b0d854a88eb8d1281c9aad, type: 2}
