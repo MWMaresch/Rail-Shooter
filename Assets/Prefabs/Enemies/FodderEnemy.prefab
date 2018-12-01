@@ -168,10 +168,10 @@ MonoBehaviour:
   deathExplosion: {fileID: 1289732783544488, guid: 7758c36fa5720af4083fed128b8e154c,
     type: 2}
   maxHealth: 2
-  minShootDistance: 30
+  minShootDistance: 45
   rammingDistance: 7
-  speed: 0.2
-  shootDelay: 1
+  speed: 0.3
+  shootDelay: 0.75
   projectile: {fileID: 1217035404442762, guid: 590007bde8b0d854a88eb8d1281c9aad, type: 2}
   muzzleFlash: {fileID: 1165137862334790, guid: ec96877d5d11e6644a03b4eba7b8a011,
     type: 2}
