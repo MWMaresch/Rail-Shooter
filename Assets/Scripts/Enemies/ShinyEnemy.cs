@@ -14,8 +14,8 @@ public class ShinyEnemy : Enemy
     public override void Start ()
     {
         base.Start();
-        pointsForDestroy = 200;
-        pointsForHit = 0;
+        //pointsForDestroy = 200;
+        //pointsForHit = 0;
         timer = 0;
 	}
 

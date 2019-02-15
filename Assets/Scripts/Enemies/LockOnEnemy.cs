@@ -5,34 +5,30 @@ public class LockOnEnemy : Enemy {
     public float waitTime;
     public float shootDelay;
     public float shootDistance;
-    public float speed;
+    public float acceleration;
+    public float maxSpeed;
     public GameObject projectile;
     public GameObject muzzleFlash;
 
-    private bool isShooting;
-    private bool reachedShootDistance;
-    private float waitTimer;
     private float shootTimer;
     private Vector3 direction;
-    private Vector3 shootPosition;
+    private Vector3 destination;
     private Vector3 pPos;
+    private Vector3 velocity;
     private GameObject player;
 
     // Use this for initialization
     public override void Start ()
     {
         base.Start();
-        pointsForDestroy = 50;
-        pointsForHit = 2;
+        //pointsForDestroy = 50;
+        //pointsForHit = 2;
         player = GameObject.FindGameObjectWithTag("Player");
         pPos = player.transform.position;
-        shootPosition = new Vector3(pPos.x, pPos.y, pPos.z + shootDistance);
-        direction = (shootPosition - transform.position).normalized;
-        waitTimer = 0;
+        destination = new Vector3(pPos.x, pPos.y, pPos.z + shootDistance);
+        direction = (destination - transform.position).normalized;
         shootTimer = 0;
-        isShooting = false;
         col = Color.magenta;
-        reachedShootDistance = false;
     }
 
 
@@ -41,36 +37,23 @@ public class LockOnEnemy : Enemy {
         base.FixedUpdate();
         pPos = player.transform.position;
 
-        if (!reachedShootDistance)
+        shootTimer -= Time.fixedDeltaTime;
+        // if we're close to our destination OR if it's been a long time since we last shot and we're far enough
+        if (Vector3.Distance(transform.position, destination) <= 5f)// || (shootTimer < -1.5f && transform.position.z >= destination.z))
         {
-            if (Vector3.Distance(transform.position, shootPosition) > speed * 2)
-                transform.position += direction * speed;
-            else
-                reachedShootDistance = true;
+            if (shootTimer <= 0)
+            {
+                FireFiveShots();
+                shootTimer = shootDelay;
+            }
+            destination = new Vector3(pPos.x, pPos.y, pPos.z + shootDistance)
+                + new Vector3(Random.Range(-3,3), Random.Range(-3, 3), Random.Range(-1, 1));
+            //we add a bit of randomness so multiple enemies don't all go to the same spot
         }
-        else
-        {
-            waitTimer -= Time.fixedDeltaTime;
-            if (waitTimer <= 0)
-            {
-                isShooting = !isShooting;
-                waitTimer = waitTime;
-                direction = (pPos - transform.position).normalized;
-            }
-
-            if (isShooting)
-            {
-                shootTimer -= Time.fixedDeltaTime;
-                if (shootTimer <= 0f)
-                {
-                    FireFiveShots();
-                }
-            }
-            else
-            {
-                transform.position += new Vector3(direction.x * speed, direction.y * speed, 0);
-            }
-        }
+        direction = (destination - transform.position).normalized;
+        velocity += direction * acceleration;
+        velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
+        transform.position += velocity;
     }
 
     private void FireFiveShots()

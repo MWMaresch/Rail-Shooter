@@ -18,8 +18,8 @@ public class FodderEnemy : Enemy {
     public override void Start()
     {
         base.Start();
-        pointsForDestroy = 60;
-        pointsForHit = 5;
+        //pointsForDestroy = 60;
+        //pointsForHit = 5;
         player = GameObject.FindWithTag("Player");
         shootTimer = shootDelay;
         reachedPlayer = false;
@@ -35,10 +35,10 @@ public class FodderEnemy : Enemy {
 
             //move towards the player, but not if we're too close already
             float distance = Vector3.Distance(transform.position, player.transform.position);
-            if (distance > rammingDistance)
+            if (distance > 0)
             {
-                direction = (player.transform.position - transform.position).normalized;
-                transform.position += direction * speed;
+                //direction = (player.transform.position - transform.position).normalized;
+                transform.position += Vector3.back * speed;
 
                 //every set amount of time, shoot at the player
                 shootTimer -= Time.fixedDeltaTime;

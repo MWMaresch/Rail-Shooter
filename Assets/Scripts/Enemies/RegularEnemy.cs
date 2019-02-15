@@ -13,8 +13,8 @@ public class RegularEnemy : Enemy {
 	public override void Start ()
     {
         base.Start();
-        pointsForDestroy = 60;
-        pointsForHit = 5;
+        //pointsForDestroy = 60;
+        //pointsForHit = 5;
         player = GameObject.FindWithTag("Player");
         reachedPlayer = false;
     }

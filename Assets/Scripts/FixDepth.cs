@@ -1,13 +1,20 @@
 ﻿using UnityEngine;
 
 public class FixDepth : MonoBehaviour {
-    
 
-	void FixedUpdate () {
-        GetComponent<SpriteRenderer>().sortingOrder = (int)Mathf.Floor(-transform.position.z);
+    private SpriteRenderer spriteRenderer;
+
+
+    void Start()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
+    void FixedUpdate () {
+        spriteRenderer.sortingOrder = (int)Mathf.Floor(-transform.position.z);
         if (transform.position.z < 23.2f)
         {
-            GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, (transform.position.z-18f) / 7f);
+            spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, (transform.position.z-18f) / 7f);
         }
 
     }

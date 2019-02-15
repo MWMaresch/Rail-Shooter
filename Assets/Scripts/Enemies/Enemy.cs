@@ -21,6 +21,8 @@ public class Enemy : MonoBehaviour {
     // Use this for initialization
     public virtual void Start ()
     {
+        pointsForHit = 25;
+        pointsForDestroy = 100;
         col = Color.white;
         water = GameObject.FindGameObjectWithTag("Water");
         health = maxHealth;
