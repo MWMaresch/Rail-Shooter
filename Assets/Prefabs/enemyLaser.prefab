@@ -64,8 +64,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37877e2d4d33f794688bd2a81f64f2ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  crosshair: {fileID: 1210215867942328, guid: c58aa712684234643867dbdf761b91d5, type: 3}
-  speed: 0.3
+  speed: 0.4
   targetPosition: {x: 0, y: 0, z: 0}
 --- !u!212 &212614352042223584
 SpriteRenderer:

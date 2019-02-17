@@ -101,7 +101,7 @@ MonoBehaviour:
     type: 3}
   maxHealth: 2
   rammingDistance: 5
-  speed: 0.4
+  speed: 0.3
 --- !u!65 &65927680199435682
 BoxCollider:
   m_ObjectHideFlags: 0
