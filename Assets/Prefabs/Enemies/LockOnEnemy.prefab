@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: bb5b9ac3fa957104a96375b4d907c023, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 57af65c07a4b08b4fb26a413696675e4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -205,6 +205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dca95aea44ee5346a300ca0df7717a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  adjustTransparency: 0
 --- !u!114 &114602576638731238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,9 +224,10 @@ MonoBehaviour:
     type: 3}
   maxHealth: 2
   waitTime: 1
-  shootDelay: 1
+  shootDelay: 2
   shootDistance: 13
   acceleration: 0.012
+  deceleration: 0.96
   maxSpeed: 0.2
   projectile: {fileID: 1217035404442762, guid: 590007bde8b0d854a88eb8d1281c9aad, type: 3}
   muzzleFlash: {fileID: 1165137862334790, guid: ec96877d5d11e6644a03b4eba7b8a011,

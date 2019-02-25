@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4366757, g: 0.48427194, b: 0.5645252, a: 1}
+  m_IndirectSpecularColor: {r: 0.43667546, g: 0.48427135, b: 0.5645225, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8417,7 +8417,16 @@ MonoBehaviour:
   spawns:
   - gameObj: {fileID: 1702546018770710, guid: 9dc3ebfbe23aade40a66276fd0e15a7d, type: 3}
     spawnTime: 1
-    position: {x: 20, y: 20, z: -60}
+    position: {x: 40, y: 0, z: -10}
+  - gameObj: {fileID: 1702546018770710, guid: 9dc3ebfbe23aade40a66276fd0e15a7d, type: 3}
+    spawnTime: 1
+    position: {x: -40, y: 0, z: -10}
+  - gameObj: {fileID: 1702546018770710, guid: 9dc3ebfbe23aade40a66276fd0e15a7d, type: 3}
+    spawnTime: 1
+    position: {x: -40, y: 20, z: -10}
+  - gameObj: {fileID: 1702546018770710, guid: 9dc3ebfbe23aade40a66276fd0e15a7d, type: 3}
+    spawnTime: 1
+    position: {x: 40, y: 20, z: -10}
   - gameObj: {fileID: 1825798332044464, guid: 78ee162cd0f75514692f9636384e71fd, type: 3}
     spawnTime: 2
     position: {x: 0, y: 0, z: 70}
@@ -8474,7 +8483,7 @@ MonoBehaviour:
     position: {x: -50, y: 5, z: 100}
   - gameObj: {fileID: 1825798332044464, guid: 78ee162cd0f75514692f9636384e71fd, type: 3}
     spawnTime: 20
-    position: {x: -50, y: 4, z: 100}
+    position: {x: -20, y: 4, z: 100}
   - gameObj: {fileID: 1261147336371548, guid: 765cc6c407403c6409d0568c26890c15, type: 3}
     spawnTime: 20
     position: {x: -50, y: 4, z: 50}

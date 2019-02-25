@@ -6,6 +6,7 @@ public class LockOnEnemy : Enemy {
     public float shootDelay;
     public float shootDistance;
     public float acceleration;
+    public float deceleration;
     public float maxSpeed;
     public GameObject projectile;
     public GameObject muzzleFlash;
@@ -27,8 +28,7 @@ public class LockOnEnemy : Enemy {
         pPos = player.transform.position;
         destination = new Vector3(pPos.x, pPos.y, pPos.z + shootDistance);
         direction = (destination - transform.position).normalized;
-        shootTimer = 0;
-        col = Color.magenta;
+        shootTimer = shootDelay;
     }
 
 
@@ -37,9 +37,10 @@ public class LockOnEnemy : Enemy {
         base.FixedUpdate();
         pPos = player.transform.position;
 
-        shootTimer -= Time.fixedDeltaTime;
+        if (transform.position.z > pPos.z)
+            shootTimer -= Time.fixedDeltaTime;
         // if we're close to our destination OR if it's been a long time since we last shot and we're far enough
-        if (Vector3.Distance(transform.position, destination) <= 5f)// || (shootTimer < -1.5f && transform.position.z >= destination.z))
+        if (Vector3.Distance(transform.position, destination) <= 1f)// || (shootTimer < -1.5f && transform.position.z >= destination.z))
         {
             if (shootTimer <= 0)
             {
@@ -50,6 +51,7 @@ public class LockOnEnemy : Enemy {
                 + new Vector3(Random.Range(-3,3), Random.Range(-3, 3), Random.Range(-1, 1));
             //we add a bit of randomness so multiple enemies don't all go to the same spot
         }
+        velocity *= deceleration;
         direction = (destination - transform.position).normalized;
         velocity += direction * acceleration;
         velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
