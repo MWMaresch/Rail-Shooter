@@ -1,17 +1,21 @@
 ﻿using UnityEngine;
 
-public class Laser : MonoBehaviour {
+public class PlayerWeapon : MonoBehaviour {
 
     public Sprite splash;
 
+    public int damage;
+    public float speed;
+    public bool destroyOnHit = true;
+
     //public Camera cam;
     private GameObject crosshair;
-    private float lifeTime = 3f;
+    public float lifeTime = 3f;
     private Vector3 direction;
     private bool splashed = false;
     private GameObject player;
     // Use this for initialization
-    void Start ()
+    protected virtual void Start ()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         crosshair = GameObject.FindGameObjectWithTag("Crosshair");
@@ -22,20 +26,20 @@ public class Laser : MonoBehaviour {
         transform.forward = -Camera.main.transform.forward;
         transform.position += direction *2f;
     }
-	
-	// Update is called once per frame
-	void FixedUpdate ()
+
+    // Update is called once per frame
+    protected virtual void FixedUpdate ()
     {
         if (!splashed)
             transform.Rotate(new Vector3(0, 0, 1f), 45f);
 
-        transform.position += direction;
+        transform.position += direction * speed;
         lifeTime -= Time.fixedDeltaTime;
         if (lifeTime <= 0f)
             Destroy(gameObject);
     }
 
-    private void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
         if (!splashed && other.gameObject.tag == "Water")
         {
@@ -47,5 +51,11 @@ public class Laser : MonoBehaviour {
             transform.rotation = new Quaternion(0, 0, 0, 0);
             direction = new Vector3(0, 0, -GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().zSpeed * 0.6f);
         }
+    }
+
+    public virtual void HitEnemy(GameObject other)
+    {
+        if (destroyOnHit)
+            Destroy(gameObject);
     }
 }

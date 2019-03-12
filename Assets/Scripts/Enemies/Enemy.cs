@@ -18,6 +18,9 @@ public class Enemy : MonoBehaviour {
     protected Color col;
 
     private GameObject water;
+    private float prevX;
+    private static float TiltAmount = 1;
+
     // Use this for initialization
     public virtual void Start ()
     {
@@ -27,6 +30,7 @@ public class Enemy : MonoBehaviour {
         water = GameObject.FindGameObjectWithTag("Water");
         health = maxHealth;
         hitColorTimer = 0f;
+        prevX = transform.position.x;
     }
 
     public virtual void FixedUpdate()
@@ -44,6 +48,9 @@ public class Enemy : MonoBehaviour {
         }
         else
             GetComponent<Renderer>().material.color = col;
+
+        transform.rotation = new Quaternion(transform.rotation.x, transform.rotation.y, (prevX - transform.position.x) * TiltAmount, transform.rotation.w);
+        prevX = transform.position.x;
     }
     
     public virtual void Explode()
@@ -64,8 +71,8 @@ public class Enemy : MonoBehaviour {
     {
         if (other.gameObject.tag == "PlayerWeapon" && health > 0)
         {
-            Destroy(other.gameObject);
-            health--;
+            health-= other.GetComponent<PlayerWeapon>().damage;
+            other.GetComponent<PlayerWeapon>().HitEnemy(gameObject);
             if (health > 0)
                 TakeDamage((transform.position.x - other.transform.position.x), (transform.position.y - other.transform.position.y));
             else

@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public enum LaserType { Single, Twin, somethingelse };
+public enum LaserType { Twin, Rocket, Sword, LaserBeam };
 
 public class Player : MonoBehaviour {
 
@@ -11,6 +11,8 @@ public class Player : MonoBehaviour {
     public Transform crosshair;
     public Camera cam;
     public GameObject laser;
+    public GameObject rocket;
+    public GameObject swordSlash;
     public GameObject smallImpact;
     public GameObject muzzleFlash;
     public GameObject deathExplosion;
@@ -20,14 +22,13 @@ public class Player : MonoBehaviour {
     public GameObject shieldHUD;
     public GameObject hp2HUD;
     public GameObject hp1HUD;
-    public float Health { get { return health; } }
+    public float Health { get; private set; }
     public Vector3 velocity;
-
-    private float health;
     private Vector3 prevPosition;
     private bool mouseEnabled = true;
     private bool shooting = false;
     private bool autoShooting = false;
+    private float shootDelay = 0.15f;
     private float lastShootTime;
     private float damageTimer;
     private float shieldTimer;
@@ -51,8 +52,8 @@ public class Player : MonoBehaviour {
         velocity = new Vector3(0,0,0);
         exploded = false;
         isAlive = true;
-        health = 2;
-        laserType = LaserType.Single;
+        Health = 2;
+        laserType = LaserType.Twin;
         cameraOrigPos = Camera.main.transform.position;
         lastShootTime = 999f;
         muzzleFlashRend = muzzleFlash.GetComponent<Renderer>();
@@ -94,6 +95,15 @@ public class Player : MonoBehaviour {
         else
             autoShooting = false;
 
+        //for testing weapon types
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            laserType = LaserType.Twin;
+        }
+        else if(Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            laserType = LaserType.Rocket;
+        }
         //button presses are detected in update instead of FixedUpdate for two reasons:
         //1. less input delay at higher refresh rates
         //2. for some reason, they sometimes trigger twice when put in Update instead
@@ -170,20 +180,27 @@ public class Player : MonoBehaviour {
             //rotate the crosshair with the camera to prevent aliasing
             crosshair.rotation = cam.transform.rotation;
 
-            //shooting is faster when mashing than when holding down the button
-            if ((shooting && lastShootTime > 0.06f) || (autoShooting && lastShootTime > 0.15f))
+            //shooting is slightly faster when mashing than when holding down the button
+            if ((shooting && lastShootTime > shootDelay - 0.1f) || (autoShooting && lastShootTime > shootDelay))
             {
                 muzzleFlash.transform.rotation = new Quaternion(transform.rotation.x, transform.rotation.y, UnityEngine.Random.Range(-1f, 1f), transform.rotation.w);
                 lastShootTime = 0f;
                 shooting = false;
-                if (laserType == LaserType.Single)
+                /*if (laserType == LaserType.Single)
                 {
                     Instantiate(laser, transform.position, transform.rotation);
                 }
-                else if (laserType == LaserType.Twin)
+                else
+                */if (laserType == LaserType.Twin)
                 {
+                    shootDelay = 0.15f;
                     Instantiate(laser, rightCannon.transform.position, transform.rotation);
                     Instantiate(laser, leftCannon.transform.position, transform.rotation);
+                }
+                else if (laserType == LaserType.Rocket)
+                {
+                    shootDelay = 0.4f;
+                    Instantiate(rocket, transform.position, transform.rotation);
                 }
                 GetComponent<AudioSource>().Play();
                 muzzleFlashRend.enabled = true;
@@ -231,8 +248,8 @@ public class Player : MonoBehaviour {
         //indicator that we're hit
         if (!shieldHUD.activeSelf)
         {
-            health -= damage;
-            if (health == 1)
+            Health -= damage;
+            if (Health == 1)
             {
                 hp1HUD.SetActive(true);
                 hp2HUD.SetActive(false);
@@ -241,7 +258,7 @@ public class Player : MonoBehaviour {
         else
             shieldHUD.SetActive(false);
 
-        if (health <= 0)
+        if (Health <= 0)
         {
             hp1HUD.SetActive(false);
             GetComponent<SpriteRenderer>().color = Color.red;
@@ -257,7 +274,7 @@ public class Player : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (health <= 0f && !exploded && damageTimer > 2f)
+        if (Health <= 0f && !exploded && damageTimer > 2f)
         {
             GetComponent<Renderer>().enabled = false;
             Instantiate(deathExplosion, transform.position, transform.rotation);
@@ -283,7 +300,7 @@ public class Player : MonoBehaviour {
                 other.GetComponent<Renderer>().enabled = false;
                 other.GetComponent<AudioSource>().Play();
                 //Destroy(other.gameObject);
-                laserType = LaserType.Twin;
+                //laserType = LaserType.Twin;
             }
         }
     }

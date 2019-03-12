@@ -1,0 +1,106 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &8356323485593212131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5789932271386470385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e5118a23c17b1948b3da2b219352bd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  splash: {fileID: 0}
+  damage: 1
+  speed: 1.5
+  destroyOnHit: 1
+  lifeTime: 3
+  explosion: {fileID: 676492153966421118, guid: 97c0fc77ba65f8845bb586ca8ad9093e,
+    type: 3}
+--- !u!1001 &5790838549209879791
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1346093229323038, guid: 3e3fd59558bcf28439039589907629d8, type: 3}
+      propertyPath: m_Name
+      value: rocket
+      objectReference: {fileID: 0}
+    - target: {fileID: 4019108180916120, guid: 3e3fd59558bcf28439039589907629d8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4019108180916120, guid: 3e3fd59558bcf28439039589907629d8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4019108180916120, guid: 3e3fd59558bcf28439039589907629d8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4019108180916120, guid: 3e3fd59558bcf28439039589907629d8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4019108180916120, guid: 3e3fd59558bcf28439039589907629d8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4019108180916120, guid: 3e3fd59558bcf28439039589907629d8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4019108180916120, guid: 3e3fd59558bcf28439039589907629d8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4019108180916120, guid: 3e3fd59558bcf28439039589907629d8, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4019108180916120, guid: 3e3fd59558bcf28439039589907629d8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4019108180916120, guid: 3e3fd59558bcf28439039589907629d8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4019108180916120, guid: 3e3fd59558bcf28439039589907629d8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114575267990282382, guid: 3e3fd59558bcf28439039589907629d8,
+        type: 3}
+      propertyPath: damage
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114575267990282382, guid: 3e3fd59558bcf28439039589907629d8,
+        type: 3}
+      propertyPath: speed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 136032389363414532, guid: 3e3fd59558bcf28439039589907629d8,
+        type: 3}
+      propertyPath: m_Radius
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212845739202246042, guid: 3e3fd59558bcf28439039589907629d8,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 560afc8614a9d81489822d8313b9b644,
+        type: 3}
+    m_RemovedComponents:
+    - {fileID: 114575267990282382, guid: 3e3fd59558bcf28439039589907629d8, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 3e3fd59558bcf28439039589907629d8, type: 3}
+--- !u!1 &5789932271386470385 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1346093229323038, guid: 3e3fd59558bcf28439039589907629d8,
+    type: 3}
+  m_PrefabInstance: {fileID: 5790838549209879791}
+  m_PrefabAsset: {fileID: 0}

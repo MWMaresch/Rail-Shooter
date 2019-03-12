@@ -7228,6 +7228,8 @@ MonoBehaviour:
   crosshair: {fileID: 113105490}
   cam: {fileID: 422716112}
   laser: {fileID: 1346093229323038, guid: 3e3fd59558bcf28439039589907629d8, type: 3}
+  rocket: {fileID: 5789932271386470385, guid: 0707f11b57b8b924294da6fdf7720fc8, type: 3}
+  swordSlash: {fileID: 0}
   smallImpact: {fileID: 1725070187102656, guid: 38dcc2aa2135b7e4eb29f29d690e1091,
     type: 3}
   muzzleFlash: {fileID: 2048484362}

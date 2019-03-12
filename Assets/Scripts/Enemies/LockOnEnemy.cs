@@ -40,7 +40,7 @@ public class LockOnEnemy : Enemy {
         if (transform.position.z > pPos.z)
             shootTimer -= Time.fixedDeltaTime;
         // if we're close to our destination OR if it's been a long time since we last shot and we're far enough
-        if (Vector3.Distance(transform.position, destination) <= 1f)// || (shootTimer < -1.5f && transform.position.z >= destination.z))
+        if (Vector3.Distance(transform.position, destination) <= 2f)// || (shootTimer < -1.5f && transform.position.z >= destination.z))
         {
             if (shootTimer <= 0)
             {
